@@ -10,7 +10,7 @@ import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import User from "./pages/User";
-import PrivateUser from "./components/privateUser";
+import PrivateUser from "./components/PrivateUser.jsx";
 
 export default function App() {
   return (

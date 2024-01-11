@@ -8,13 +8,13 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require('path')
 const app = express();
-const _dirname = path.resolve()
+const __dirname = path.resolve()
 
 
 app.use(express.json());
-app.use(express.static(path.join(_dirname, 'client/dist')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(_dirname, 'client','dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client','dist', 'index.html'));
 })
 app.use(cookieParser());
 app.use(cors());

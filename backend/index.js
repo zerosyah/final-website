@@ -10,11 +10,22 @@ const path = require("path")
 
 const __dirnames = path.resolve();
 const app = express();
+<<<<<<< HEAD
+=======
+const __dirnames = path.resolve()
+>>>>>>> f71a6629d6b73fd54486f603aa004f987c902ff1
 
 app.use(express.static(path.join(__dirnames, "/client/dist")));
 
+<<<<<<< HEAD
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirnames, "client", "dist", "index.html"));
+=======
+app.use(express.json());
+app.use(express.static(path.join(__dirnames, 'client/dist')));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirnames, 'client','dist', 'index.html'));
+>>>>>>> f71a6629d6b73fd54486f603aa004f987c902ff1
 })
 app.use(express.json());
 app.use(cookieParser());

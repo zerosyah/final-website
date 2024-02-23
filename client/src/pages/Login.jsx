@@ -94,7 +94,7 @@ export default function signin() {
       </div>
       <div>
         <p className="text-red-700 mt-4">
-          {error ? error.message : ""}
+          {error ? error : "something went Wrong"}
         </p>
       </div>
     </div>

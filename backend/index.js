@@ -17,7 +17,7 @@ const __dirnames = path.resolve()
 app.use(express.static(path.join(__dirnames, "/client/dist")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirnames, "client", "dist", "index.html"));
-})
+});
 
 app.use(express.json());
 app.use(express.static(path.join(__dirnames, 'client/dist')));

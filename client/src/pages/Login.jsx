@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import OAuth from "../components/OAuth";
+import { TextInput, Button } from "flowbite-react";
 
 export default function signin() {
 
@@ -73,28 +74,17 @@ export default function signin() {
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">sign in</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={handleChange}
-          className="bg-slate-100 p-3 rounded-lg"
-          placeholder="Email"
-        />
 
-        <input
-          type="password"
-          name="password"
-          id="password"
-          className="bg-slate-100 p-3 rounded-lg "
-          onChange={handleChange}
-          placeholder="Password"
-        />
+        <TextInput type="email" name="email" id="email" onChange={handleChange} placeholder="Email" className="bg-slate-100 rounded-lg"/>
 
-        <button className="bg-slate-600 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-70">
-          {loading ? "logging in" : "log in"}
-        </button>
+        <TextInput type="password" name="password" id="password" onChange={handleChange} placeholder="Password" className="bg-slate-100 rounded-lg"/>
+
+        <Button type="submit" className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70" gradientDuoTone="purpleToBlue">
+          {loading ? "logging-in" : "log in"}
+        </Button>
+
         <OAuth />
+
       </form>
       <div className="flex gap-2 mt-5">
         <p>not in the system,</p>

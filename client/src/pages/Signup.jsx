@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
+import { Button, TextInput } from "flowbite-react";
 
 export default function signup() {
   //useState for change in use input
@@ -45,46 +46,40 @@ export default function signup() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">sign up</h1>
+      <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="text"
+        <TextInput type="text"
           name="firstName"
           id="firstName"
-          className="bg-slate-100 p-3 rounded-lg"
+          className="bg-slate-100 rounded-lg"
           onChange={handleChange}
-          placeholder="First Name"
-        />
+          placeholder="First Name"/>
 
-        <input
-          type="text"
+        
+        <TextInput type="text"
           name="lastName"
           id="lastName"
-          className="bg-slate-100 p-3 rounded-lg "
+          className="bg-slate-100 rounded-lg "
           onChange={handleChange}
-          placeholder="Last Name"
-        />
-        <input
-          type="email"
+          placeholder="Last Name"/>
+      
+        <TextInput type="email"
           name="email"
           id="email"
           onChange={handleChange}
-          className="bg-slate-100 p-3 rounded-lg"
-          placeholder="Email"
-        />
+          className="bg-slate-100 rounded-lg"
+          placeholder="Email"/>
 
-        <input
-          type="password"
+        <TextInput type="password"
           name="password"
           id="password"
-          className="bg-slate-100 p-3 rounded-lg "
+          className="bg-slate-100 rounded-lg "
           onChange={handleChange}
-          placeholder="Password"
-        />
+          placeholder="Password"/>
 
-        <button className="bg-slate-600 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-70">
+        <Button className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70" gradientDuoTone="purpleToBlue">
           {loading ? "creating user" : "Sign Up"}
-        </button>
+        </Button>
         <OAuth/>
       </form>
       <div className="flex gap-2 mt-5">

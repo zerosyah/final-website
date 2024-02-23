@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from "../assets/image2.jpg"
 import {Link} from "react-router-dom"
+import { Card } from 'flowbite-react'
 
 export default function Stuff() {
   return (
@@ -9,187 +10,125 @@ export default function Stuff() {
        <div className="text-center text-4xl font-semibold my-2">
         <h1 className="">School Stuff</h1>
        </div>
-      <div className="flex flex-wrap justify-evenly my-2">
+
+      <div className="flex flex-wrap gap-4 justify-evenly my-2">
        {/*General Teacher*/}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>IsiZulu</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-        <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+        <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Home Language (IsiZulu)
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers who are teaching the home language in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
        {/*General Teacher*/}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Mathematics</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-          
-        </div>
-       </div>
+       <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          First Additional Language (English)
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers who are teaching the first additional language in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
-       {/*/english Teachers */}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>English</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+       {/*/maths Teachers */}
+       <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Mathematics
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers who are teaching the Mathematics in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
        {/*History Teachers*/}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>History</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+       <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Mathematics (Literacy)
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers that are teaching the home language in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
-       {/*Engilsh */}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Geography</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+       {/*Geography */}
+       <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Physical Sciences
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers who are teaching the physical sciences in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
        {/*Drama */}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Drama</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-          
-        </div>
-       </div>
+       <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Drama
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers who are teaching the drama in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
        {/*Tourism Teachers */}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Tourism</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+       <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Tourism
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers that are teaching the tourism in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
        {/*Accounting Teachers*/}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Acconting</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+       <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Accounting
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers that are teaching the home language in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
        {/* */}
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Tourism</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+       <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Business Studies
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers that are teaching the home language in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Business Studies</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+        <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Life Sciences
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers that are teaching the home language in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Life Science</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
-       </div>
+        <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Life Sciences
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers who are teaching the life orientation in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
 
-       <div className="border-solid border-2 border-gray-800 w-fit p-3 flex flex-col align-middle text-center gap-4 m-2">
-        <div className="text-xl font-bold">
-          <h1>Physical Science</h1>
-        </div>
-        <div className="">
-          <img src={logo} alt="logo" className='w-40'/>
-        </div>
-        <div className="">
-          <Link to="/">
-           <span className="text-blue-700 font-mono">View Teacher</span> 
-          </Link>
-        </div>
+        <Card className="max-w-sm" imgSrc={logo} horizontal>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Consumer
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+          Here are the teachers who are teaching the consumer in Sompukwane Secondary School in reverse chronological order. <Link to="/view" className='text-blue-700'>view</Link>
+          </p>
+        </Card>
        </div>
-       </div>
-
     </div>
   )
 }

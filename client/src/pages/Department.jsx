@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import { Card } from "flowbite-react";
 
 export default function Department() {
   const subjects = [
@@ -21,7 +22,7 @@ export default function Department() {
     "Tourism",
   ];
   const grade = {
-    "Grade8": [
+    Grade8: [
       subjects[0],
       subjects[1],
       subjects[2],
@@ -30,7 +31,7 @@ export default function Department() {
       subjects[5],
       subjects[6],
     ],
-    "Grade9":[
+    Grade9: [
       subjects[0],
       subjects[1],
       subjects[2],
@@ -69,102 +70,138 @@ export default function Department() {
       subjects[15],
       subjects[16],
     ],
-  }
+  };
   return (
-    <div className='flex flex-col gap-0'>
+    <div className="flex flex-col gap-0">
       <div className="text-center text-4xl font-semibold my-2">
         <h1>Departments</h1>
       </div>
-    <div className="border-solid flex gap-5 p-2 m-1 justify-evenly">
-    <div className="border-solid border-l-2 border-s-emerald-950 w-40 gap-4 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">GRADE 8:</h2>
-      <ul className="">
-        {grade['Grade8'].map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 gap-4 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">GRADE 9:</h2>
-      <ul className="">
-        {grade['Grade9'].map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 10:</h2>
-      <span className='text-left font-serif pl-1 font-u'>-Commerce-</span>
-      <ul className="">
-        {grade.grade10_Commerse.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
+      <div className="self-center flex flex-col gap-4 md:flex-row justify-around flex-wrap">
+        <div className="">
+          <Card>
+            <h2 className="self-center text-black font-semibold ">GRADE 8:</h2>
+            <ul className="">
+              {grade["Grade8"].map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div className="">
+          <Card>
+            <h2 className="self-center text-black font-semibold ">GRADE 9:</h2>
+            <ul className="">
+              {grade["Grade9"].map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 10:</h2>
+            <span className="text-left font-serif pl-1 font-u">Commerce</span>
+            <ul className="">
+              {grade.grade10_Commerse.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
 
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 10:</h2>
-      <span className="text-left font-serif pl-1">-Genaral-</span>
-      <ul className="">
-        {grade.grade10_drama.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 10:</h2>
+            <span className="text-left font-serif pl-1">-Genaral-</span>
+            <ul className="">
+              {grade.grade10_drama.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
 
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 10:</h2>
-      <span className="font-serif">-Science-</span>
-      <ul className="">
-        {grade.grade10_science.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
-    </div>
-    {/*spacing Div */}
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 10:</h2>
+            <span className="font-serif">-Science-</span>
+            <ul className="">
+              {grade.grade10_science.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        {/*spacing Div */}
 
-    <div className="border-solid border-2 flex gap-12 p-0 m-0 justify-evenly"></div>
-
-    {/**grade11 */}
-    <div className=" flex gap-12 p-2 m-1 justify-evenly">
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 11:</h2>
-      <span className="text-left font-serif pl-1">-Genaral-</span>
-      <ul className="">
-        {grade.grade10_drama.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
+        {/**grade11 */}
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 11:</h2>
+            <span className="text-left font-serif pl-1">-Genaral-</span>
+            <ul className="">
+              {grade.grade10_drama.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 11:</h2>
+            <span className="text-left font-serif pl-1">-Genaral-</span>
+            <ul className="">
+              {grade.grade10_drama.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 11:</h2>
+            <span className="text-left font-serif pl-1">-Genaral-</span>
+            <ul className="">
+              {grade.grade10_drama.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 12:</h2>
+            <span className="text-left font-serif pl-1">-Genaral-</span>
+            <ul className="">
+              {grade.grade10_drama.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 12:</h2>
+            <span className="text-left font-serif pl-1">-Genaral-</span>
+            <ul className="">
+              {grade.grade10_drama.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div className="">
+          <Card>
+            <h2 className="text-left font-semibold pl-1">Grade 12:</h2>
+            <span className="text-left font-serif pl-1">-Genaral-</span>
+            <ul className="">
+              {grade.grade10_drama.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+      </div>
     </div>
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 11:</h2>
-      <span className="text-left font-serif pl-1">-Genaral-</span>
-      <ul className="">
-        {grade.grade10_drama.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 11:</h2>
-      <span className="text-left font-serif pl-1">-Genaral-</span>
-      <ul className="">
-        {grade.grade10_drama.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 12:</h2>
-      <span className="text-left font-serif pl-1">-Genaral-</span>
-      <ul className="">
-        {grade.grade10_drama.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 12:</h2>
-      <span className="text-left font-serif pl-1">-Genaral-</span>
-      <ul className="">
-        {grade.grade10_drama.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
-    <div className="border-solid border-s-emerald-950 border-l-2 w-40 h-60 text-center">
-      <h2 className="text-left font-semibold pl-1">Grade 12:</h2>
-      <span className="text-left font-serif pl-1">-Genaral-</span>
-      <ul className="">
-        {grade.grade10_drama.map((subject)=><li key={subject}>{subject}</li>)}
-      </ul>
-    </div>
-    
-    </div>
-    
-    
-    
-    </div>
-  )
+  );
 }

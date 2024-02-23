@@ -16,7 +16,7 @@ import {
   deleteUserStart,
   deleteUserSuccess,
   deleteUserFailure,
-  signOut
+  signOut,
 } from "../redux/user/userSlice";
 import { TextInput, Button } from "flowbite-react";
 
@@ -106,11 +106,10 @@ export default function Profile() {
     try {
       await fetch("/api/auth/signout");
       dispatch(signOut());
-
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -147,13 +146,15 @@ export default function Profile() {
       {/*form bellow */}
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         {/*upload input below */}
-        
-        <TextInput 
+
+        <TextInput
           type="file"
           ref={fileRef}
           hidden
           accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])} className="hidden"/>
+          onChange={(e) => setImage(e.target.files[0])}
+          className="hidden"
+        />
 
         {/*image display */}
         <img
@@ -178,40 +179,40 @@ export default function Profile() {
           )}
         </p>
 
-        <input
+        <TextInput
           defaultValue={currentUser.firstName}
           type="text"
           name="firstName"
           id="firstName"
           placeholder="first Name"
-          className="bg-slate-100 rounded-lg p-3"
+          className="bg-slate-100 rounded-lg"
           onChange={handleChange}
         />
 
         {/*surname input field bellow */}
-        <input
+        <TextInput
           defaultValue={currentUser.lastName}
           type="text"
           name="lastName"
           id="lastName"
           placeholder="lastName"
-          className="bg-slate-100 rounded-lg p-3"
+          className="bg-slate-100 rounded-lg"
           onChange={handleChange}
         />
 
         {/*password input field bellow */}
-        <input
+        <TextInput
           type="password"
           name="password"
           id="password"
           placeholder="change password"
-          className="bg-slate-100 rounded-lg p-3"
+          className="bg-slate-100 rounded-lg"
           onChange={handleChange}
         />
 
-        <button className="bg-slate-600 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-70">
+        <Button className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70">
           {loading ? "Updating user" : "Update"}
-        </button>
+        </Button>
         <div className="flex  justify-between mt-3">
           <span
             className="text-red-700 cursor-pointer"
@@ -219,7 +220,12 @@ export default function Profile() {
           >
             Delete Account
           </span>
-          <span className="text-red-700 cursor-pointer" onClick={handleLogoutAccount}>logout</span>
+          <span
+            className="text-red-700 cursor-pointer"
+            onClick={handleLogoutAccount}
+          >
+            logout
+          </span>
         </div>
       </form>
       <p className="text-red-700 mt-3 text-center">

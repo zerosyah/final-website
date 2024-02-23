@@ -18,7 +18,7 @@ import {
   deleteUserFailure,
   signOut
 } from "../redux/user/userSlice";
-import { TextInput, Button,  } from "flowbite-react";
+import { TextInput, Button } from "flowbite-react";
 
 export default function Profile() {
   {
@@ -153,7 +153,7 @@ export default function Profile() {
           ref={fileRef}
           hidden
           accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}/>
+          onChange={(e) => setImage(e.target.files[0])} className="hidden"/>
 
         {/*image display */}
         <img

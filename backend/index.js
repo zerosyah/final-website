@@ -6,16 +6,17 @@ const userRouter = require("./routes/user.route.js");
 const authRouter = require("./routes/auth.route.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const path = require('path')
+const path = require("path")
+
+const __dirnames = path.resolve();
 const app = express();
-const _dirname = path.resolve()
 
+app.use(express.static(path.join(__dirnames, "/client/dist")));
 
-app.use(express.json());
-app.use(express.static(path.join(_dirname, 'client/dist')));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(_dirname, 'client','dist', 'index.html'));
+  res.sendFile(path.join(__dirnames, "client", "dist", "index.html"));
 })
+app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 

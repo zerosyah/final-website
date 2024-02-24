@@ -97,7 +97,7 @@ export default function signin() {
         <Button
           type="submit"
           className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70"
-          gradientDuoTone="purpleToBlue"
+          gradientDuoTone="purpleToBlue" outline
         >
           {loading ? "logging-in" : "log in"}
         </Button>

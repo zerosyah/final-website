@@ -102,7 +102,7 @@ export default function signin() {
           {loading ? "logging-in" : "log in"}
         </Button>
 
-        <OAuth />
+      <OAuth/>
       </form>
       <div className="flex gap-2 mt-5">
         <p>not in the system,</p>

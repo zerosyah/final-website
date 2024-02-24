@@ -10,8 +10,9 @@ import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import User from "./pages/User";
-import PrivateUser from "./components/PrivateUser.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import Dashboard from "./pages/Dashboard";
+import CreatePost from "./pages/CreatePost";
+import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 
 export default function App() {
   return (
@@ -36,6 +37,9 @@ export default function App() {
         // private profile route
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route element={<OnlyAdminPrivateRoute />}>
+        <Route path="/create-post" element={<CreatePost />} />
         </Route>
       </Routes>
     </BrowserRouter>

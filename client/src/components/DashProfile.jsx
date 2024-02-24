@@ -21,8 +21,9 @@ import {
 import { TextInput, Button } from "flowbite-react";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { Link } from "react-router-dom";
 
-export default function Profile() {
+export default function DashProfile() {
   {
     /*useSelector below */
   }
@@ -143,7 +144,7 @@ export default function Profile() {
 
   return (
     <div className="p-3 max-w-lg mx-auto w-full">
-      <h1 className="text-3xl font-semibold text-center my-5">Profile</h1>
+      <h1 className="text-3xl font-semibold text-center my-3">Profile</h1>
 
       {/*form bellow */}
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -214,10 +215,19 @@ export default function Profile() {
           onChange={handleChange}
         />
 
-        <Button type="submit" gradientDuoTone="purpleToBlue" outline className=" uppercase hover:opacity-90 disabled:opacity-70">
+        <Button type="submit" gradientDuoTone="purpleToBlue" outline className=" uppercase hover:opacity-90 disabled:opacity-70" disabled={loading || imagePercent < 100}>
           {loading ? "Updating user" : "Update"}
         </Button>
-        <div className="flex  justify-between mt-3">
+
+        {currentUser.isAdmin && (
+          <Link to={"/create-post"}>
+          <Button type="button" gradientDuoTone="pinkToOrange" outline className=" uppercase w-full">
+            Create a Post
+          </Button>
+          </Link>
+        )}
+
+        <div className="flex  justify-between mt-1">
           <span
             className="text-red-700 cursor-pointer"
             onClick={handleDeleteAccount}
@@ -226,10 +236,10 @@ export default function Profile() {
           </span>
         </div>
       </form>
-      <p className="text-red-700 mt-3 text-center">
+      <p className="text-red-700 mt-2 text-center">
         {error && "something went wrong"}
       </p>
-      <p className="text-green-700 mt-3 text-center">
+      <p className="text-green-700 mt-2 text-center">
         {updateSuccess && "User is updated successful" }
       </p>
     </div>

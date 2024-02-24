@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth.route.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path")
+const postRouter = require("./routes/post.route.js");
 
 
 const app = express();
@@ -62,6 +63,7 @@ mongoose
  */
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/post", postRouter);
 
 //err api endpoint
 app.use(

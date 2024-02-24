@@ -64,7 +64,7 @@ export default function signin() {
       // if not error then dispatch signInSuccess and redirect
       else {
         dispatch(signInSuccess(data));
-        navigate("/profile");
+        navigate("/dashboard");
       }
     } catch (error) {
       // catch error then dispatch signInFailure

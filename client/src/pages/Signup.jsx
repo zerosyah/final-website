@@ -77,7 +77,7 @@ export default function signup() {
           onChange={handleChange}
           placeholder="Password"/>
 
-        <Button className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70" gradientDuoTone="purpleToBlue">
+        <Button type="submit" className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70" gradientDuoTone="purpleToBlue">
           {loading ? "creating user" : "Sign Up"}
         </Button>
         <OAuth/>

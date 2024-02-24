@@ -102,14 +102,14 @@ export default function Profile() {
     }
   };
 
-  const handleLogoutAccount = async () => {
+  /*const handleLogoutAccount = async () => {
     try {
       await fetch("/api/auth/signout");
       dispatch(signOut());
     } catch (error) {
       console.log(error);
     }
-  };
+  };*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -210,7 +210,7 @@ export default function Profile() {
           onChange={handleChange}
         />
 
-        <Button className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70">
+        <Button type="submit" className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70">
           {loading ? "Updating user" : "Update"}
         </Button>
         <div className="flex  justify-between mt-3">
@@ -219,12 +219,6 @@ export default function Profile() {
             onClick={handleDeleteAccount}
           >
             Delete Account
-          </span>
-          <span
-            className="text-red-700 cursor-pointer"
-            onClick={handleLogoutAccount}
-          >
-            logout
           </span>
         </div>
       </form>

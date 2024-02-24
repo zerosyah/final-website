@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import {Button, Navbar, TextInput} from 'flowbite-react'
+import { useDispatch, useSelector } from "react-redux";
+import {Button, Navbar, TextInput, Avatar, Dropdown, Badge, theme} from 'flowbite-react'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { FaMoon } from 'react-icons/fa'
+import { FaMoon, FaSun } from 'react-icons/fa'
+import { signOut } from "../redux/user/userSlice";
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 
 export default function Header() {
   const path = useLocation();
-  const {currentUser} = useSelector((state) => state.user)
+  const { currentUser } = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state.theme)
+  const dispatch = useDispatch()
+  const handleLogoutAccount =async () =>{
+    try{
+      await fetch('/api/auth/signout')
+      dispatch(signOut())
+    } catch (error){
+      console.log(error)
+    }
+  }
   return (
     <Navbar className="border-b-2 ">
       
@@ -29,16 +41,38 @@ export default function Header() {
 
       {/* Dark icon */}
       <div className="flex gap-2 md:order-2">
-        <Button className="w-12 h-10 hidden sm:inline" color='gray' pill>
-          <FaMoon/>
+        <Button className="w-12 h-10 hidden sm:inline" color='gray' pill onClick={() => dispatch(toggleTheme())}>
+          {theme === "light" ? <FaMoon/> : <FaSun/>}
         </Button>
 
         {/* Sign-in */}
-        <Link to="/login">
+        {currentUser ? (
+          <Dropdown
+          label={<Avatar alt="User settings" img={currentUser.profilePicture} rounded />}
+          arrowIcon={false}
+          inline
+        >
+          <Dropdown.Header>
+            <span className="block text-sm">@{currentUser.firstName}</span>
+            <span className="block truncate text-sm font-medium">{currentUser.email}</span>
+          </Dropdown.Header>
+          <Link to={"/dashboard?tab=profile"}>
+          <Dropdown.Item>Dashboard {currentUser.isAdmin ? (<Badge color="info" className="ml-12">admin</Badge>):(
+            <Badge color="pink" className="ml-12">Student</Badge>
+          )}</Dropdown.Item>
+          </Link>
+          <Dropdown.Item>Settings</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item onClick={handleLogoutAccount}>Sign out</Dropdown.Item>
+        </Dropdown>
+        ):(
+          <Link to="/login">
           <Button outline gradientDuoTone="purpleToBlue">
             Sign-in
           </Button>
         </Link>
+        )}
+        
       </div>
 
       {/* Menu */}

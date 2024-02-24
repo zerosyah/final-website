@@ -11,6 +11,7 @@ import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import User from "./pages/User";
 import PrivateUser from "./components/PrivateUser.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 export default function App() {
   return (
@@ -20,10 +21,6 @@ export default function App() {
       <Routes>
         // Public route
         <Route path="/" element={<Home />} />
-        // Private user route
-        <Route element={<PrivateUser />}>
-          <Route path="/user" element={<User />} />
-        </Route>
         // login route
         <Route path="/login" element={<Login />} />
         // signup route
@@ -38,7 +35,7 @@ export default function App() {
         <Route path="/Contact" element={<Contact />} />
         // private profile route
         <Route element={<PrivateRoute />}>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

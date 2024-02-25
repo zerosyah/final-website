@@ -7,7 +7,7 @@ export default function Stuff() {
   return (
     <div className="flex flex-col justify-evenly flex-wrap">
       <div className="text-center text-4xl font-semibold my-2">
-        <h1 className="">School Stuff</h1>
+        <h1 className="uppercase mb-2">Stuff</h1>
       </div>
 
       <div className="flex flex-wrap gap-4 justify-evenly my-2">
@@ -23,7 +23,7 @@ export default function Stuff() {
               view
             </Link>
           </p>
-        </Card>
+        </Card>  
 
         {/*General Teacher*/}
         <Card className="max-w-sm" imgSrc={logo} horizontal>

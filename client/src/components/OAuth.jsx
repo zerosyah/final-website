@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button } from "flowbite-react";
+import { FaGoogle } from "react-icons/fa";
 
 export default function OAuth() {
   const dispatch = useDispatch();
@@ -39,10 +40,12 @@ export default function OAuth() {
   return (
     <Button
       type="button"
-      className="bg-red-700 text-white rounded-lg uppercase hover:opacity-95"
+      className="rounded-lg uppercase hover:opacity-95"
       onClick={handleGoogleClick}
+      outline
+      gradientDuoTone={"pinkToOrange"}
     >
-      Continue with google
+      <FaGoogle inline className="mr-2" />Continue with google
     </Button>
   );
 }

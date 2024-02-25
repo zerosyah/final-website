@@ -64,7 +64,7 @@ export default function DashProfile() {
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        //
+        // progress function
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setImagePercent(Math.round(progress));
@@ -215,7 +215,7 @@ export default function DashProfile() {
           onChange={handleChange}
         />
 
-        <Button type="submit" gradientDuoTone="purpleToBlue" outline className=" uppercase hover:opacity-90 disabled:opacity-70" disabled={loading || imagePercent < 100}>
+        <Button type="submit" gradientDuoTone="purpleToBlue" outline className=" uppercase hover:opacity-90 disabled:opacity-70" disabled={loading || imagePercent !== 100}>
           {loading ? "Updating user" : "Update"}
         </Button>
 
@@ -227,7 +227,9 @@ export default function DashProfile() {
           </Link>
         )}
 
-        <div className="flex  justify-between mt-1">
+        {
+          currentUser.isAdmin && (
+            <div className="flex  justify-between mt-1">
           <span
             className="text-red-700 cursor-pointer"
             onClick={handleDeleteAccount}
@@ -235,6 +237,9 @@ export default function DashProfile() {
             Delete Account
           </span>
         </div>
+          )
+        }
+        
       </form>
       <p className="text-red-700 mt-2 text-center">
         {error && "something went wrong"}

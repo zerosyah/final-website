@@ -9,12 +9,23 @@ import { toggleTheme } from "../redux/theme/themeSlice";
 
 
 export default function Header() {
+  // useLocation function to get path
   const path = useLocation();
+
+  // get current user
   const { currentUser } = useSelector((state) => state.user);
+
+  // get current theme
   const { theme } = useSelector((state) => state.theme)
+
+  // dispatch slice 
   const dispatch = useDispatch()
+
+  // handle logout account
   const handleLogoutAccount =async () =>{
+    // call api
     try{
+      // api requist
       await fetch('/api/auth/signout')
       dispatch(signOut())
     } catch (error){

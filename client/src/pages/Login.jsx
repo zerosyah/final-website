@@ -74,7 +74,7 @@ export default function signin() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">sign in</h1>
+      <h1 className="text-3xl text-center uppercase font-semibold my-7">Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <TextInput
           type="email"
@@ -98,14 +98,16 @@ export default function signin() {
           type="submit"
           className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70"
           gradientDuoTone="purpleToBlue" outline
+          disabled={loading}
         >
-          {loading ? "logging-in" : "log in"}
+          {loading ? "Signing in..." : "Sign in"}
         </Button>
 
       <OAuth/>
+
       </form>
       <div className="flex gap-2 mt-5">
-        <p>not in the system,</p>
+        <p>I don't have an account,</p>
         <Link to="/signup">
           <span className="text-blue-500">sign up</span>
         </Link>

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-4">
       <div className="self-center">
-        <h1 className="text-4xl font-bold text-yellow-300 mt-5">WELCOME!</h1>
+        <h1 className="text-4xl font-bold mt-5">WELCOME!</h1>
       </div>
 
       {/*school image */}
@@ -14,7 +14,7 @@ export default function Home() {
       </div>
 
       {/*School welcome script */}
-      <div className="self-center flex flex-col justify-center">
+      <div className="text-center flex flex-col justify-center">
         <h3 className="font-medium p-2">Sompukwane Secondary School</h3>
         <p className="">
           We would like to thank you for the time you have taken to have a look

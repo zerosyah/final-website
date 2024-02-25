@@ -9,7 +9,6 @@ import Stuff from "./pages/Stuff";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
-import User from "./pages/User";
 import Dashboard from "./pages/Dashboard";
 import CreatePost from "./pages/CreatePost";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";

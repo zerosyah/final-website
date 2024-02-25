@@ -46,7 +46,7 @@ export default function signup() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
+      <h1 className="text-3xl text-center font-semibold uppercase my-7">Sign Up</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <TextInput type="text"
           name="firstName"
@@ -77,13 +77,15 @@ export default function signup() {
           onChange={handleChange}
           placeholder="Password"/>
 
-        <Button type="submit" className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70" gradientDuoTone="purpleToBlue">
-          {loading ? "creating user" : "Sign Up"}
+        <Button type="submit" className="bg-slate-600 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70" gradientDuoTone="purpleToBlue" outline disabled={loading}>
+          {loading ? "creating user..." : "Sign Up"}
         </Button>
+
         <OAuth/>
+
       </form>
       <div className="flex gap-2 mt-5">
-        <p>have an account</p>
+        <p>I have an account</p>
         <Link to="/login">
           <span className="text-blue-500">sign in</span>
         </Link>

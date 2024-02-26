@@ -61,7 +61,7 @@ const signin = async (req, res, next) => {
       return next(handleError(401, "invalid credentials"));
 
       // if password match generate token
-    const token = jwt.sign({ id: validEmail._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validEmail._id, isAdmin: validEmail.isAdmin }, process.env.JWT_SECRET);
 
     // remove password from the database data return to the frontend
     const { password: pass, ...rest } = validEmail._doc;
@@ -96,7 +96,7 @@ const google = async (req, res, next) => {
     // action if availablle
     if (user) {
       // generate token if user found
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET);
 
       // remove password
       const { password: pass, ...rest } = user._doc;
@@ -137,7 +137,7 @@ const google = async (req, res, next) => {
       await newUser.save();
 
       //generate token
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: newUser._id, isAdmin: newUser.isAdmin }, process.env.JWT_SECRET);
 
       //remove password
       const { password: pass, ...rest } = user._doc;

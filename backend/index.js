@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const postRouter = require("./routes/post.route.js");
 
+
 // create express app
 const app = express();
 

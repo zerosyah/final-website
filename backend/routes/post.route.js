@@ -3,10 +3,7 @@ const verifyToken = require("../utils/verifyzuder");
 const post = require("../controllers/post.controller.js")
 const router = express.Router();
 
-// create post api
-router.post("/create", verifyToken, post.create)
-
-// get api for post
-router.get("/getposts", post.getPosts)
+router.post("/create", verifyToken, post.create);
+router.get("/posts", post.getAll);
 
 module.exports = router 

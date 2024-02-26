@@ -6,28 +6,28 @@ const userRouter = require("./routes/user.route.js");
 const authRouter = require("./routes/auth.route.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const path = require("path")
+const path = require("path");
 const postRouter = require("./routes/post.route.js");
 
-
+// create express app
 const app = express();
 
-const __dirnames = path.resolve()
+// dirictory name
+const __dirnames = path.resolve();
 
-
-app.use(express.static(path.join(__dirnames, "/client/dist")));
+// use express app static path to serve static files
+app.use(express.static(path.join(__dirnames, "client/dist")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirnames, "client", "dist", "index.html"));
 });
 
+// use express app
 app.use(express.json());
-app.use(express.static(path.join(__dirnames, 'client/dist')));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirnames, 'client','dist', 'index.html'));
 
-})
-app.use(express.json());
+// use cookies
 app.use(cookieParser());
+
+// use cors
 app.use(cors());
 
 //connect to mongongooseDB, then Listen to server
@@ -61,8 +61,14 @@ mongoose
  * @param {any} userRouter name for user Route
  * @param {any} authRouter name for auth route
  */
+
+//route api endpoints for user route
 app.use("/api/user", userRouter);
+
+//route api endpoints for auth
 app.use("/api/auth", authRouter);
+
+// route api endpoints for post
 app.use("/api/post", postRouter);
 
 //err api endpoint
@@ -79,7 +85,7 @@ app.use(
   (err, req, res, next) => {
     /**
      * variable for storing error status code and message
-     * 
+     *
      * @constant {any} statusCode returns status code
      * @constant {string} message stores an error message
      * @param {boolean} success false

@@ -16,11 +16,6 @@ const app = express();
 // dirictory name
 const __dirnames = path.resolve();
 
-// use express app static path to serve static files
-app.use(express.static(path.join(__dirnames, "client/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirnames, "client", "dist", "index.html"));
-});
 
 // use express app
 app.use(express.json());
@@ -40,20 +35,20 @@ app.use(cors());
  * @param {any} Error parameter on a callback function to produce an error if it's occers
  * @method then() what to happen if connect() is successful
  * @method catch() returns an error if connect() fails
- */
+*/
 mongoose
-  .connect(process.env.MONGO)
-  .then(() => {
-    console.log("connected to the database");
-    app.listen(process.env.PORT, () => {
-      console.log(`server running port ${process.env.PORT}`);
-    });
-  })
+.connect(process.env.MONGO)
+.then(() => {
+  console.log("connected to the database");
+  app.listen(process.env.PORT, () => {
+    console.log(`server running port ${process.env.PORT}`);
+  });
+})
   .catch((Error) => {
     console.log(Error);
   });
-
-//route api endpoints
+  
+  //route api endpoints
 /**
  * this are api endpoints for user route and auth
  * @method use() takes is name of the route, and required name
@@ -61,7 +56,7 @@ mongoose
  * @param {string} /api/auth - is direction
  * @param {any} userRouter name for user Route
  * @param {any} authRouter name for auth route
- */
+*/
 
 //route api endpoints for user route
 app.use("/api/user", userRouter);
@@ -71,6 +66,12 @@ app.use("/api/auth", authRouter);
 
 // route api endpoints for post
 app.use("/api/post", postRouter);
+
+// use express app static path to serve static files *they must be after api endpoints
+app.use(express.static(path.join(__dirnames, "client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirnames, "client", "dist", "index.html"));
+});
 
 //err api endpoint
 app.use(

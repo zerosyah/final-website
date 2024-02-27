@@ -15,8 +15,8 @@ export default function Home() {
 
       {/*School welcome script */}
       <div className="text-center flex flex-col justify-center">
-        <h3 className="font-medium p-2">Sompukwane Secondary School</h3>
-        <p className="">
+        <h3 className="font-medium p-2 uppercase underline">Sompukwane Secondary School</h3>
+        <p className="font-medium ">
           We would like to thank you for the time you have taken to have a look
           at our school website. Sompukwane Secondary School is a progressive
           school, fully <br /> committed to the development of each pupil in a,

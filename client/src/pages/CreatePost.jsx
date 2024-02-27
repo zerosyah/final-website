@@ -117,7 +117,7 @@ export default function CreatePost() {
       // if created post
       if (res.ok) {
         setPublishError(null);
-        navigate(`/post/${data.slug}`);
+        navigate(`/dashboard`);
       }
     } catch (error) {
       console.log("could not create post");

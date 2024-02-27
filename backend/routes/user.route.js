@@ -3,7 +3,7 @@ const router = express.Router();
 const user = require("../controllers/user.controller.js");
 const verifyToken = require("../utils/verifyzuder.js");
 
-router.get("/", user.test);
+router.get("/test", user.test);
 
 // update api
 router.post("/update/:id", verifyToken, user.updateFunction)

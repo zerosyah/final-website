@@ -11,10 +11,14 @@ const userSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
+      min: 3,
+      max: 20,
     },
     lastName: {
       type: String,
       required: true,
+      min: 3,
+      max: 20,
     },
     email: {
       type: String,
@@ -42,14 +46,23 @@ const userSchema = new mongoose.Schema(
  * @returns return hashed password
  */
 userSchema.pre("save", async function (next) {
+  // check if password is modified
   if (!this.isModified("password")) return next();
   try {
+    // salt the password
     const salt = await bcrypt.genSalt(10);
+
+    // hash password using bcrypt
     this.password = await bcrypt.hash(this.password, salt);
     return next();
   } catch (error) {
+    // return error
     next(error);
   }
 });
+
+// initiate user model
 const userModel = mongoose.model("users", userSchema);
+
+// export user model
 module.exports = userModel;

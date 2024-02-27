@@ -29,6 +29,7 @@ const create = async (req, res, next) => {
 
   // save post
   try {
+    // save post
     const savedPost = await newPost.save();
     res.status(200).json(savedPost);
   } catch (error) {
@@ -37,17 +38,24 @@ const create = async (req, res, next) => {
   }
 };
 
+
+// get all posts
 const getAll = async (req, res, next) => {
-  console.log(req.user);
-  console.log("get posts");
+  // check if title and content are not empty
   try {
+    // initiate start index
     const startIndex = parseInt(req.query.startIndex) || 0;
+
+    // get limit
     const limit = parseInt(req.query.limit) || 9;
+
+    // sort direction
     const sortDirection = req.query.order || "asc" ? 1 : -1;
-    
+
+    // search post id
     const posts = await postModel.find({
         ...(req.query.userId && { userId: req.query.userId }),
-        ...(req.quert.category && { category: req.query.category }),
+        ...(req.query.category && { category: req.query.category }),
         ...(req.query.slug && { category: req.query.slug }),
         ...(req.query.postId && {_id: req.query.postId}),
         ...(req.query.searchTerm && {
@@ -57,28 +65,31 @@ const getAll = async (req, res, next) => {
             ],
         }),
     }).sort({ updatedAt: sortDirection }).skip(startIndex).limit(limit);
+
+    // get total posts
     const totalPosts = await postModel.countDocuments();
 
+    // get last month
     const now = new Date();
     const oneMonthAgo = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
         now.getDate(),
     );
+
+    // get last month
     const lastMonthAgo = await postModel.countDocuments({
         createdAt: { $gte: oneMonthAgo },
     });
+
+    // send response
     res.status(200).json({
         posts,
         totalPosts,
         lastMonthAgo,
     });
-    if (posts){
-        console.log(posts);
-        res.status(200).json(posts);
-    }
-
   } catch (error) {
+    // send error
     next(error);
   }
 };

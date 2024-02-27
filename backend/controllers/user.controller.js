@@ -51,11 +51,14 @@ const updateFunction = async (req, res, next)=>{
             //new user data is true
             {new: true}
         );
+
         //remove password
         const {password, ...rest} = updateUser._doc;
+
         //send status
         res.status(200).json(rest);
     } catch(error){
+        // send error
         next(error)
     }
 }
@@ -63,14 +66,17 @@ const updateFunction = async (req, res, next)=>{
 const deleteFunction = async (req, res, next)=>{
     // check if user id is not equal to req.params.id
     if (req.user.id !== req.params.id) {
+        // return error
         return next(handleError(401, "you can delete only your account"));
     }
     try {
         // delete user
         await userModel.findByIdAndDelete(req.params.id);
+
         // send response
         res.status(200).json({ message: "User deleted successfully" });
     } catch (error) {
+        // send error
         next(error);
     }
 }

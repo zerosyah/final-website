@@ -73,10 +73,10 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirnames, "client", "dist", "index.html"));
 });
 
-//err api endpoint
+//middleware api endpoint
 app.use(
   /**
-   * function for error
+   * Middleware function/api endpoint
    *
    * @param {any} err catches an error if occars
    * @param {any} req get information from the frontend

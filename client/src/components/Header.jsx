@@ -58,11 +58,13 @@ export default function Header() {
 
         {/* Sign-in */}
         {currentUser ? (
+          // Dropdown menu IF user is logged in
           <Dropdown
           label={<Avatar alt="User settings" img={currentUser.profilePicture} rounded />}
           arrowIcon={false}
           inline
         >
+          {/* Dropdown header IF user is logged in */}
           <Dropdown.Header>
             <span className="block text-sm">@{currentUser.firstName}</span>
             <span className="block truncate text-sm font-medium">{currentUser.email}</span>

@@ -117,7 +117,7 @@ export default function CreatePost() {
       // if created post
       if (res.ok) {
         setPublishError(null);
-        navigate(`/dashboard`);
+        navigate(`/dashboard?tab=posts`);
       }
     } catch (error) {
       console.log("could not create post");
@@ -146,10 +146,18 @@ export default function CreatePost() {
             }
           >
             <option value="uncategorized">select category</option>
-            <option value="mathematics">Mathematics</option>
-            <option value="physics">Physics</option>
-            <option value="english">English</option>
-            <option value="isiZulu">IsiZulu</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Physical Sciences">Physics</option>
+            <option value="English">English</option>
+            <option value="IsiZulu">IsiZulu</option>
+            <option value="Life Sciences">Life Sciences</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Life Orientation">Life Orientation</option>
+            <option value="Consummer Studies">Consummer Studies</option>
+            <option value="Geography">Geography</option>
+            <option value="Drama">Drama</option>
+            <option value="Tourism">Tourism</option>
+            <option value="School Notice">School Notice</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted">
@@ -157,7 +165,6 @@ export default function CreatePost() {
             type="file"
             accept="image/*"
             className=""
-            required
             onChange={(e) => setFile(e.target.files[0])}
           />
 

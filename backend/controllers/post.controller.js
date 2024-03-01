@@ -2,9 +2,10 @@ const errorHandler = require("../utils/error.js");
 const postModel = require("../models/post.model.js");
 
 const create = async (req, res, next) => {
-  if(!req.user.isAdmin){
-        return next(errorHandler(403, "you are not allowed to do that!"));
-    }
+  // check if user is an admin
+  if (!req.user.isAdmin) {
+    return next(errorHandler(403, "you are not allowed to do that!"));
+  }
 
   // check if title and content are not empty
   if (!req.body.title || !req.body.content) {
@@ -38,7 +39,6 @@ const create = async (req, res, next) => {
   }
 };
 
-
 // get all posts
 const getAll = async (req, res, next) => {
   // check if title and content are not empty
@@ -53,18 +53,22 @@ const getAll = async (req, res, next) => {
     const sortDirection = req.query.order || "asc" ? 1 : -1;
 
     // search post id
-    const posts = await postModel.find({
+    const posts = await postModel
+      .find({
         ...(req.query.userId && { userId: req.query.userId }),
         ...(req.query.category && { category: req.query.category }),
         ...(req.query.slug && { category: req.query.slug }),
-        ...(req.query.postId && {_id: req.query.postId}),
+        ...(req.query.postId && { _id: req.query.postId }),
         ...(req.query.searchTerm && {
-            $or: [
-                {title: {$regex: req.query.searchTerm, $options: "i"}},
-                {content: {$regex: req.query.searchTerm, $options: "i"}},
-            ],
+          $or: [
+            { title: { $regex: req.query.searchTerm, $options: "i" } },
+            { content: { $regex: req.query.searchTerm, $options: "i" } },
+          ],
         }),
-    }).sort({ updatedAt: sortDirection }).skip(startIndex).limit(limit);
+      })
+      .sort({ updatedAt: sortDirection })
+      .skip(startIndex)
+      .limit(limit);
 
     // get total posts
     const totalPosts = await postModel.countDocuments();
@@ -72,21 +76,21 @@ const getAll = async (req, res, next) => {
     // get last month
     const now = new Date();
     const oneMonthAgo = new Date(
-        now.getFullYear(),
-        now.getMonth() - 1,
-        now.getDate(),
+      now.getFullYear(),
+      now.getMonth() - 1,
+      now.getDate()
     );
 
     // get last month
     const lastMonthAgo = await postModel.countDocuments({
-        createdAt: { $gte: oneMonthAgo },
+      createdAt: { $gte: oneMonthAgo },
     });
 
     // send response
     res.status(200).json({
-        posts,
-        totalPosts,
-        lastMonthAgo,
+      posts,
+      totalPosts,
+      lastMonthAgo,
     });
   } catch (error) {
     // send error
@@ -94,7 +98,26 @@ const getAll = async (req, res, next) => {
   }
 };
 
+const deletePost = async (req, res, next) => {
+  console.log(req.params);
+  // check if user is an admin
+  if (!req.user.isAdmin || req.user.id !== req.params.userId)
+    return next(errorHandler(404, "only admins can delete the posts"));
+
+// try to find and delete post
+try {
+  //search for post in the database then delete post
+  await postModel.findByIdAndDelete(req.params.postId);
+
+  // return a status of success
+  res.status(200).json("post deleted success full");
+} catch (error) {
+  next(error);
+}
+}
+
 module.exports = {
   create,
-  getAll
+  getAll,
+  deletePost,
 };

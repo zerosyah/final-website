@@ -13,4 +13,7 @@ router.get("/posts", post.getAll);
 // api router for delete posts
 router.delete("/delete/:postId/:userId", verifyToken, post.deletePost)
 
+// api router for update posts
+router.put("/update/:postId/:userId", verifyToken, post.updatePost)
+
 module.exports = router 

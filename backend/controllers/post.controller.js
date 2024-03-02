@@ -116,8 +116,35 @@ try {
 }
 }
 
+const updatePost = async (req, res, next) => {
+  // check if user is an admin
+  if (!req.user.isAdmin || req.user.id !== req.params.userId)
+    return next(errorHandler(404, "only admins can update the posts"));
+
+  // try to find and update post
+  try {
+    //search for post in the database then update post
+    const update = await postModel.findByIdAndUpdate(req.params.postId, {
+      $set: {
+        title: req.body.title,
+        category: req.body.category,
+        content: req.body.content,
+        image: req.body.image,
+      }
+    }, { new: true });
+    
+    // return a status of success
+    res.status(200).json(update);
+    
+  } catch(error){
+    next(error);
+  }
+}
+
+
 module.exports = {
   create,
   getAll,
   deletePost,
+  updatePost
 };

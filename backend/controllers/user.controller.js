@@ -81,9 +81,57 @@ const deleteFunction = async (req, res, next)=>{
     }
 }
 
+// get all users controller
+const getUsers = async (req, res, next) =>{
+    // check if user is an admin
+    if(!req.user.isAdmin){
+        return next(handleError(403, "only admins can get all users"))
+    }
+
+    // get all users
+    try{
+        const startIndex = parseInt(req.query.startIndex) || 0;
+        const limit = parseInt(req.query.limit) || 9;
+        const sortDirection = req.query.sort === "asc" ? 1 : -1;
+        const users = await userModel.find()
+            .sort({ updatedAt: sortDirection })
+            .skip(startIndex)
+            .limit(limit);
+
+            const usersWithoutPassword = users.map((user) => {
+                const { password, ...rest } = user._doc;
+                return rest;
+            })
+
+            const totalUsers = await userModel.countDocuments();
+
+            const now = new Date();
+
+            const oneMonthAgo = new Date(
+                now.getFullYear(),
+                now.getMonth() - 1,
+                now.getDate()
+            );
+
+            const lastMonthUsers = await userModel.countDocuments({
+                createdAt: { $gte: oneMonthAgo },
+            })
+
+        res.status(200).json({
+            users: usersWithoutPassword,
+            totalUsers,
+            lastMonthUsers,
+        })
+
+    } catch (error){
+        next(error)
+    }
+}
+
 module.exports = {
     test,
     updateFunction,
-    deleteFunction
+    deleteFunction,
+    getUsers
 };
  

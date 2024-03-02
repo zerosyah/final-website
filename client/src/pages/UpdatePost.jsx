@@ -249,7 +249,7 @@ export default function UpdatePost() {
           }}
         />
         <Button type="submit" gradientDuoTone={"purpleToPink"} outline>
-          Submit
+          Update Post
         </Button>
         {puplishError && (
           <Alert className="mt-5" color="failure">

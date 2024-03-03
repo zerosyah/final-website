@@ -45,7 +45,7 @@ export default function OAuth() {
       outline
       gradientDuoTone={"pinkToOrange"}
     >
-      <FaGoogle inline className="mr-2" />Continue with google
+      <FaGoogle inline="true" className="mr-2" />Continue with google
     </Button>
   );
 }

@@ -62,7 +62,7 @@ export default function Header() {
           <Dropdown
           label={<Avatar alt="User settings" img={currentUser.profilePicture} rounded />}
           arrowIcon={false}
-          inline
+          inline="true"
         >
           {/* Dropdown header IF user is logged in */}
           <Dropdown.Header>
@@ -70,7 +70,7 @@ export default function Header() {
             <span className="block truncate text-sm font-medium">{currentUser.email}</span>
           </Dropdown.Header>
           <Link to={"/dashboard?tab=profile"}>
-          <Dropdown.Item>Dashboard {currentUser.isAdmin ? (<Badge color="info" className="ml-12">admin</Badge>):(
+          <Dropdown.Item>Profile {currentUser.isAdmin ? (<Badge color="info" className="ml-12">admin</Badge>):(
             <Badge color="pink" className="ml-12">Student</Badge>
           )}</Dropdown.Item>
           </Link>

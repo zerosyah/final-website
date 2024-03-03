@@ -14,4 +14,5 @@ router.delete("/delete/:id", verifyToken, user.deleteFunction)
 // get all users
 router.get("/getUsers", verifyToken, user.getUsers)
 
+
 module.exports = router;

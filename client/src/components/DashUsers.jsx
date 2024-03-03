@@ -86,14 +86,14 @@ export default function DashUsers() {
   };
 
   // handle delete post
-  const handleDeletePost = async () => {
+  const handleDeleteUser = async () => {
     // first show model off
     setShowModel(false);
 
     // try to delete post
     try {
       // api request to delete post in the backend with post id and user id
-      const res = await fetch(`/api/user/delete/${userToDelete}/${currentUser._id}`, {
+      const res = await fetch(`/api/user/delete/${userToDelete}`, {
         method: "DELETE",
       });
 
@@ -101,7 +101,7 @@ export default function DashUsers() {
       const data = await res.json();
 
       // when the request is successful
-      if (res.ok) {
+      if (!res.ok) {
         // return message
         console.log(data.message);
       } else {
@@ -148,7 +148,7 @@ export default function DashUsers() {
                   </Table.Cell>
                   <Table.Cell>{user.lastName}</Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
-                  <Table.Cell>{user.isAdmin ? (<TiTick className="text-green-500"/>):(<RxCross2 className="text-red-500"/>)}</Table.Cell>
+                  <Table.Cell>{user.isAdmin ? (<TiTick className="text-green-500" size={20}/>):(<RxCross2 className="text-red-500" size={20}/>)}</Table.Cell>
                   <Table.Cell>
                     <span
                       className="text-red-500 font-medium hover:underline cursor-pointer"
@@ -197,7 +197,7 @@ export default function DashUsers() {
             </h3>
           </div>
           <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={handleDeletePost}>
+            <Button color="failure" onClick={handleDeleteUser}>
               Delete
             </Button>
             <Button

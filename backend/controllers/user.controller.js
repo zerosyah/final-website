@@ -65,7 +65,7 @@ const updateFunction = async (req, res, next)=>{
 // delete user api
 const deleteFunction = async (req, res, next)=>{
     // check if user id is not equal to req.params.id
-    if (req.user.id !== req.params.id) {
+    if (!req.user.isAdmin && req.user.id !== req.params.id) {
         // return error
         return next(handleError(401, "you can delete only your account"));
     }
@@ -127,6 +127,7 @@ const getUsers = async (req, res, next) =>{
         next(error)
     }
 }
+
 
 module.exports = {
     test,

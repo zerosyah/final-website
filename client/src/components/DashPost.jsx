@@ -145,12 +145,7 @@ export default function DashPost() {
                     </Link>
                   </Table.Cell>
                   <Table.Cell>
-                    <Link
-                      className="font-medium text-gray-500 dark:text-white"
-                      to={`/post/${post.title}`}
-                    >
                       {post.title}
-                    </Link>
                   </Table.Cell>
                   <Table.Cell>{post.category}</Table.Cell>
                   <Table.Cell>

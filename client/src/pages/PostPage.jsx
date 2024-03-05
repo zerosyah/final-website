@@ -1,6 +1,8 @@
 import { Button, Spinner } from 'flowbite-react';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import CallToAction from '../components/CallToAction';
+import CommentSection from '../components/CommentSection';
 
 export default function PostPage() {
     const { postSlug } = useParams();
@@ -56,6 +58,11 @@ export default function PostPage() {
         <div dangerouslySetInnerHTML={{__html: post && post.content}} className='p-3 max-w-full w-full post-content self-center text-center'>
 
         </div>
+        <div className="max-w-4xl mx-auto w-full">
+            <CallToAction/>
+        </div>
+
+        <CommentSection postId={post._id}/>
 
     </main>
   )

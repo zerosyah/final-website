@@ -14,5 +14,8 @@ router.delete("/delete/:id", verifyToken, user.deleteFunction)
 // get all users
 router.get("/getUsers", verifyToken, user.getUsers)
 
+// get users that have commented
+router.get("/:userId", user.userComments)
+
 
 module.exports = router;

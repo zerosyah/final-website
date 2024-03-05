@@ -8,6 +8,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const postRouter = require("./routes/post.route.js");
+const commentRouter = require("./routes/comment.routes.js")
 
 
 // create express app
@@ -66,6 +67,9 @@ app.use("/api/auth", authRouter);
 
 // route api endpoints for post
 app.use("/api/post", postRouter);
+
+// route api endpoints for comments
+app.use("/api/comment", commentRouter);
 
 // use express app static path to serve static files *they must be after api endpoints
 app.use(express.static(path.join(__dirnames, "client/dist")));

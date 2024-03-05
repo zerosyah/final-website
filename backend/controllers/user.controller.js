@@ -90,33 +90,49 @@ const getUsers = async (req, res, next) =>{
 
     // get all users
     try{
+        // initiate start index
         const startIndex = parseInt(req.query.startIndex) || 0;
+
+        // get limit
         const limit = parseInt(req.query.limit) || 9;
+
+        // sort direction
         const sortDirection = req.query.sort === "asc" ? 1 : -1;
+
+        // find users and posts
         const users = await userModel.find()
             .sort({ updatedAt: sortDirection })
             .skip(startIndex)
             .limit(limit);
 
+            // remove password from the database data return to the frontend
             const usersWithoutPassword = users.map((user) => {
+                // remove password
                 const { password, ...rest } = user._doc;
+
+                // return rest of the data
                 return rest;
             })
 
+            // get total users
             const totalUsers = await userModel.countDocuments();
 
+            // initialize date
             const now = new Date();
 
+            // get last month
             const oneMonthAgo = new Date(
                 now.getFullYear(),
                 now.getMonth() - 1,
                 now.getDate()
             );
 
+            // get last month users
             const lastMonthUsers = await userModel.countDocuments({
                 createdAt: { $gte: oneMonthAgo },
             })
 
+            // send data to the frontend
         res.status(200).json({
             users: usersWithoutPassword,
             totalUsers,
@@ -128,11 +144,33 @@ const getUsers = async (req, res, next) =>{
     }
 }
 
+// get users that have commented
+const userComments = async (req, res, next) =>{
+    // try find user from the database
+    try{
+        // find user by id from the database
+        const user = await userModel.findById(req.params.userId)
+
+        // if user not found send error to the frontend
+        if(!user) return next(handleError(404, "user not found"))
+
+        // remove password from the database data return to the frontend
+        const { password, ...rest } = user._doc;
+
+        // send data to the frontend
+        res.status(200).json(rest)
+        
+    } catch(error){
+        // send error to the frontend   
+        next(error)
+    }
+}
 
 module.exports = {
     test,
     updateFunction,
     deleteFunction,
-    getUsers
+    getUsers,
+    userComments
 };
  

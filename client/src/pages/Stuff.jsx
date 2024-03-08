@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/image2.jpg";
 import { Link } from "react-router-dom";
 import { Card } from "flowbite-react";
 
 export default function Stuff() {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="flex flex-col justify-evenly flex-wrap">
       <div className="text-center text-4xl font-semibold my-2">
@@ -12,17 +13,19 @@ export default function Stuff() {
 
       <div className="flex flex-wrap gap-4 justify-evenly my-2">
         {/*General Teacher*/}
-        <Card className="max-w-sm" imgSrc={logo} horizontal>
-          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <Card className={`max-w-sm 0verflow-hidden shadow-lg transition-transform duration-700 transform ${isHovered ? "scale-105" : "100"} `} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} imgSrc={logo} horizontal>
+          <h5 className={`text-2xl font-bold tracking-tight text-gray-900 dark:text-white ${isHovered ? "-mt-5 duration-700 ease-in-out": "mt-0"}`}>
             Home Language (IsiZulu)
           </h5>
           <p className="font-normal text-gray-700 dark:text-gray-400">
             Here are the teachers who are teaching the home language in
             Sompukwane Secondary School in reverse chronological order.{" "}
-            <Link to="/view" className="text-blue-700">
+          </p>
+          <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded opacity-0 ease-in-out transition-opacity duration-700 ${isHovered ? "opacity-100 translate-y-4": "translate-y-0"}`}>
+            <Link to="/view" className="">
               view
             </Link>
-          </p>
+          </button>
         </Card>  
 
         {/*General Teacher*/}

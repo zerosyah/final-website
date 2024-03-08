@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState , useEffect} from "react";
 import image1 from "../assets/images1.jpg";
 
 export default function Home() {
+  const [fadeIn, setFadeIn] = useState(false);
+  useEffect(() =>{
+    setFadeIn(true)
+  }, [])
   return (
     <div className="flex flex-col gap-4">
       <div className="self-center">
@@ -9,8 +13,8 @@ export default function Home() {
       </div>
 
       {/*school image */}
-      <div className="flex self-center">
-        <img src={image1} alt="school emage" />
+      <div className={`flex self-center transition-opacity duration-1000 ease-in-out ${fadeIn ? "opacity-100 scale-110" : "opacity-0"}`}>
+        <img src={image1} alt="school emage"/>
       </div>
 
       {/*School welcome script */}

@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import CallToAction from '../components/CallToAction';
 import CommentSection from '../components/CommentSection';
+import PostCard from '../components/PostCard';
 
 export default function PostPage() {
     const { postSlug } = useParams();
     const  [loading, setLoading] = useState(true)
     const [post, setPost] = useState(null)
     const [error, setError] = useState(null)
+    const [recent, setRecent] = useState(null)
 
     useEffect(()=>{
         const fetchPosts = async ()=>{
@@ -33,6 +35,22 @@ export default function PostPage() {
         }
         fetchPosts()
     }, [postSlug])
+
+    useEffect(()=>{
+        const fetchRecent = async ()=>{
+            try{
+                // fetch posts api/route
+                const res = await fetch(`/api/post/posts?limit=3`)
+                const data = await res.json()
+                if(res.ok){
+                    setRecent(data.posts)
+                }
+            } catch(error){
+                console.log(error);
+            }
+        }
+        fetchRecent()
+    }, [])
 
     if(loading) return (
         <div className='flex justify-center items-center min-h-screen'>
@@ -63,6 +81,17 @@ export default function PostPage() {
         </div>
 
         <CommentSection postId={post._id}/>
+
+        <div className="flex flex-col justify-center items-center mb-5">
+            <h1 className="text-lg mt-5">Recent Articles</h1>
+            <div className="md:flex gap-4 mt-3">
+                {
+                    recent && recent.map((post)=>(
+                        <PostCard key={post._id} post={post}/>
+                    ))
+                }
+            </div>
+        </div>
 
     </main>
   )

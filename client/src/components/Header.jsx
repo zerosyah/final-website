@@ -74,6 +74,11 @@ export default function Header() {
             <Badge color="pink" className="ml-12">Student</Badge>
           )}</Dropdown.Item>
           </Link>
+          <Link to={"/dashboard?tab=dash"}>
+          <Dropdown.Item>Dashboard {currentUser.isAdmin ? (<Badge color="info" className="ml-12">admin</Badge>):(
+            <Badge color="pink" className="ml-12">Student</Badge>
+          )}</Dropdown.Item>
+          </Link>
           <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={handleLogoutAccount}>Sign out</Dropdown.Item>

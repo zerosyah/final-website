@@ -9,6 +9,8 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 import { Checkbox, Table } from "flowbite-react";
 import logo from "../assets/image2.jpg";
 import { PiExam } from "react-icons/pi";
+import { ArcElement } from "chart.js/auto";
+import PieChart from "./PieChart";
 
 export default function DashComponent() {
   const [users, setUsers] = useState([]);
@@ -93,7 +95,7 @@ export default function DashComponent() {
             <PiStudentBold size={40} className="text-orange-300" />
           </div>
           <div className="w-64 bg-sky-200 h-20 rounded ">
-            <flowbiteCalendar />
+            
           </div>
         </div>
       </div>
@@ -105,8 +107,8 @@ export default function DashComponent() {
           <div className="flex flex-col gap-4">
             {/*class routine */}
             <div className="w-fit bg-purple-50 dark:text-black h-fit py-2 rounded">
-              <h3 className="mx-3">Class Routine</h3>
-              <div className="flex gap-3 mx-3 mt-1">
+              <h3 className="mx-3 font-semibold dark:text-black">Class Routine</h3>
+              <div className="flex gap-3 mx-3 mt-2">
                 <Dropdown
                   label="select your day"
                   color="transparent"
@@ -124,13 +126,25 @@ export default function DashComponent() {
                   color="transparent"
                   size={"xs"}
                   className="p-0"
-                ></Dropdown>
+                >
+                  <Dropdown.Item>Grade 8</Dropdown.Item>
+                  <Dropdown.Item>Grade 9</Dropdown.Item>
+                  <Dropdown.Item>Grade 10</Dropdown.Item>
+                  <Dropdown.Item>Grade 11</Dropdown.Item>
+                  <Dropdown.Item>Grade 12</Dropdown.Item>
+                </Dropdown>
                 <Dropdown
                   label="section"
                   size={"xs"}
                   color="transparent"
                   className="p-0"
-                ></Dropdown>
+                >
+                  <Dropdown.Item>A</Dropdown.Item>
+                  <Dropdown.Item>B</Dropdown.Item>
+                  <Dropdown.Item>C</Dropdown.Item>
+                  <Dropdown.Item>D</Dropdown.Item>
+                  <Dropdown.Item>E</Dropdown.Item>
+                </Dropdown>
               </div>
 
               {/*time table */}
@@ -187,52 +201,61 @@ export default function DashComponent() {
             {/*top students */}
             <div className="bg-purple-50 max-w-min h-fit py-2 px-1.5 rounded w-fit">
               <div className="flex justify-between items-center">
-                <h3 className="text-md font-semibold my-2">Top Students</h3>
+                <h3 className="text-md font-semibold dark:text-black pl-2">Top Students</h3>
                 <SlOptionsVertical
                   size={15}
-                  className="text-md font-semibold my-2"
+                  className="text-md font-semibold my-2 dark:text-black"
                 />
               </div>
-              <div className="overflow-x-auto w-96">
+              <div className="overflow-x-auto py-0 w-96">
                 <Table className="bg-purple-50">
                   <Table.Head className="bg-purple-50">
                     <Table.HeadCell className="bg-purple-50">
-                      Product name
+                      Name
                     </Table.HeadCell>
                     <Table.HeadCell className="bg-purple-50">
-                      Color
+                      Grade
                     </Table.HeadCell>
                     <Table.HeadCell className="bg-purple-50">
-                      Category
-                    </Table.HeadCell>
-                    <Table.HeadCell className="bg-purple-50">
-                      Price
+                      Marks
                     </Table.HeadCell>
                   </Table.Head>
-                  <Table.Body className="divide-y bg-purple-50">
-                    <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800 w-fit">
-                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 min-w-min dark:text-white">
-                        {'Apple MacBook Pro 17"'}
+                  <Table.Body className="divide-y bg-purple-50 py-0">
+                    <Table.Row className="bg-purple-50 py-0 dark:border-gray-700 dark:bg-gray-800 w-fit">
+                      <Table.Cell className="whitespace-nowrap py-0 font-medium text-gray-900 min-w-min dark:text-white">
+                        Zamani
                       </Table.Cell>
-                      <Table.Cell className="bg-purple-50">Sliver</Table.Cell>
-                      <Table.Cell className="bg-purple-50">Laptop</Table.Cell>
-                      <Table.Cell className="bg-purple-50">$2999</Table.Cell>
+                      <Table.Cell className="py-1">12B</Table.Cell>
+                      <Table.Cell className="py-1">100</Table.Cell>
                     </Table.Row>
                     <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800">
-                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Microsoft Surface Pro
+                      <Table.Cell className="whitespace-nowrap py-0 font-medium text-gray-900 dark:text-white">
+                        Asanda
                       </Table.Cell>
-                      <Table.Cell>White</Table.Cell>
-                      <Table.Cell>Laptop PC</Table.Cell>
-                      <Table.Cell>$1999</Table.Cell>
+                      <Table.Cell className="py-1">11A</Table.Cell>
+                      <Table.Cell className="py-1">98</Table.Cell>
+                      
                     </Table.Row>
                     <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800">
-                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Magic Mouse 2
+                      <Table.Cell className="whitespace-nowrap py-1 font-medium text-gray-900 dark:text-white">
+                        Samuel
                       </Table.Cell>
-                      <Table.Cell>Black</Table.Cell>
-                      <Table.Cell>Accessories</Table.Cell>
-                      <Table.Cell>$99</Table.Cell>
+                      <Table.Cell className="py-1">10C</Table.Cell>
+                      <Table.Cell className="py-1">99</Table.Cell>
+                    </Table.Row>
+                    <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800">
+                      <Table.Cell className="whitespace-nowrap py-1 font-medium text-gray-900 dark:text-white">
+                        Zanele
+                      </Table.Cell>
+                      <Table.Cell className="py-1">9C</Table.Cell>
+                      <Table.Cell className="py-1">99</Table.Cell>
+                    </Table.Row>
+                    <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800">
+                      <Table.Cell className="whitespace-nowrap py-1 font-medium text-gray-900 dark:text-white">
+                        Nombikayise
+                      </Table.Cell>
+                      <Table.Cell className="py-1">8C</Table.Cell>
+                      <Table.Cell className="py-1">99</Table.Cell>
                     </Table.Row>
                   </Table.Body>
                 </Table>
@@ -245,28 +268,28 @@ export default function DashComponent() {
           {/*second middle section */}
           <div className="flex flex-col gap-4">
             {/*New Applications */}
-            <div className="bg-purple-50 w-80 rounded">
-              <div className="flex items-center justify-between px-3 pt-2">
-                <h3 className="">New Application</h3>
+            <div className="bg-purple-50 w-56 rounded">
+              <div className="flex items-center justify-between px-3 pt-1 pb-0">
+                <h3 className="font-semibold dark:text-black">New Application</h3>
                 <SlOptionsVertical
                   size={15}
-                  className="text-md font-semibold my-2"
+                  className="text-md font-semibold"
                 />
               </div>
-              <div className="bg-purple-50 h-24 max-h-24">
-                <Table className="h-24">
-                  <Table.Head>
-                    <Table.HeadCell className="bg-purple-50 w-5 py-0">Appy Date</Table.HeadCell>
-                    <Table.HeadCell className="bg-purple-50 py-0">Name</Table.HeadCell>
+              <div className="bg-purple-50 w-52 pr-2 overflow-hidden">
+                <Table className="h-0">
+                  <Table.Head className="p-0">
+                    <Table.HeadCell className="bg-purple-50 w-2 pl-2">Date</Table.HeadCell>
+                    <Table.HeadCell className="bg-purple-50 pl-0 ">Name</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
-                    <Table.Row>
-                      <Table.Cell className="bg-purple-50 h-3 py-0">11/11/2023</Table.Cell>
-                      <Table.Cell className="bg-purple-50 items-center flex gap-1 py-2"><img src={logo} alt="image" className="w-5 h-5 rounded-full"/>Ahmed</Table.Cell>
+                    <Table.Row className="h-0 py-0">
+                      <Table.Cell className="bg-purple-50 h-0 py-0 pl-2">11/23</Table.Cell>
+                      <Table.Cell className="bg-purple-50 h-0 py-0 pl-0">Ahmedgfgfhgfh</Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                      <Table.Cell className="bg-purple-50 h-3 py-0">11/11/2023</Table.Cell>
-                      <Table.Cell className="bg-purple-50 items-center flex gap-1 py-2"><img src={logo} alt="image" className="w-5 h-5 rounded-full"/>Ahmed</Table.Cell>
+                      <Table.Cell className="bg-purple-50 h-3 py-0 pl-2">11/23</Table.Cell>
+                      <Table.Cell className="bg-purple-50 items-center flex gap-1 py-2 pl-0">Ahmed</Table.Cell>
                     </Table.Row>
                     
                     
@@ -277,16 +300,16 @@ export default function DashComponent() {
             {/*end of New Applications */}
 
             {/*Exams */}
-            <div className="bg-purple-50 w-80 py-2 rounded">
+            <div className="bg-purple-50 w-56 rounded">
               <div className="flex items-center justify-between px-3">
-                <h3 className="text-md font-semibold">Total Exams</h3>
+                <h3 className="text-md font-semibold pt-2">Total Exams</h3>
                 <SlOptionsVertical size={15} className="text-md font-semibold my-2"/>
               </div>
               <div className="flex justify-between items-center px-4">
                 <p className="font-bold text-3xl pb-2">233</p>
                 <PiExam size={30} className="font-bold pb-2"/>
               </div>
-              <div className="">
+              <div className="pb-2">
                 <Table>
                   <Table.Head>
                     <Table.HeadCell className="bg-purple-50 w-5 py-0">Passed</Table.HeadCell>
@@ -304,8 +327,8 @@ export default function DashComponent() {
             {/*end of Exams */}
 
             {/*starts*/}
-            <div className="w-80 h-44 bg-purple-50">
-              <h3>Starts</h3>
+            <div className="w-56 h-36 rounded mt-2 bg-purple-50">
+              <h3 className="text- font-semibold pt-2 px-2">Starts</h3>
             </div>
             {/*end of starts */}
           </div>
@@ -314,16 +337,33 @@ export default function DashComponent() {
           {/*right section */}
           <div className="flex flex-col gap-4">
             {/*right top section */}
-            <div className="w-80 h-80 bg-purple-50"></div>
-            <div className="w-80 h-32 bg-purple-50"></div>
+            <div className="w-min h-fit rounded pb-3 bg-purple-50">
+              <div className="flex justify-between items-center px-4 pt-2">
+                <h3 className="">Course Stats</h3>
+                <SlOptionsVertical/>
+              </div>
+              <div className="">
+                <PieChart />
+              </div>
+            </div>
+            <div className="w-64 h-36 mt-3 rounded bg-purple-50">
+              <div className="">
+                <h3 className="px-3 pt-2">Notifications</h3>
+              </div>
+            </div>
             
+          </div>
+          {/*end of right section */}
+
+          <div className="w-40 bg-purple-50 rounded">
+            <div className="flex pt-2 items-center px-2 justify-between">
+              <h3 className="">lists</h3>
+              <SlOptionsVertical/>
+            </div>
           </div>
           
         </div>
-
         {/*third section */}
-
-        <div className=""></div>
       </div>
     </div>
   );

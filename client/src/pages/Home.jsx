@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from "react";
 import image1 from "../assets/images1.jpg";
+import {motion} from "framer-motion"
 
 export default function Home() {
   const [fadeIn, setFadeIn] = useState(false);
@@ -9,18 +10,18 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-4">
       <div className="self-center">
-        <h1 className="text-4xl font-bold mt-5">WELCOME!</h1>
+        <motion.h1 className="text-4xl font-bold mt-5" initial={{x: 100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{duration: 1.5}}>WELCOME!</motion.h1>
       </div>
 
       {/*school image */}
       <div className={`flex self-center transition-opacity duration-1000 ease-in-out ${fadeIn ? "opacity-100 scale-110" : "opacity-0"}`}>
-        <img src={image1} alt="school emage"/>
+        <motion.img src={image1} alt="school emage" initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1.5, delay: 1.5}}/>
       </div>
 
       {/*School welcome script */}
       <div className="text-center flex flex-col justify-center">
-        <h3 className="font-medium p-2 uppercase underline">Sompukwane Secondary School</h3>
-        <p className="font-medium ">
+        <motion.h3 className="font-medium p-2 uppercase underline" initial={{x: -400, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{duration: 1.5, delay: 3}}>Sompukwane Secondary School</motion.h3>
+        <motion.p className="font-medium " initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1.5, delay: 4}}>
           We would like to thank you for the time you have taken to have a look
           at our school website. Sompukwane Secondary School is a progressive
           school, fully <br /> committed to the development of each pupil in a,
@@ -33,7 +34,7 @@ export default function Home() {
             is involved in, and what it offers to current and prospective
             students.
           </span>
-        </p>
+        </motion.p>
       </div>
     </div>
   );

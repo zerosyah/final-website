@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { PiStudentBold } from "react-icons/pi";
-import { HiOutlineUserGroup } from "react-icons/hi2";
-import { Datepicker, Dropdown, Select } from "flowbite-react";
+import { HiBookOpen, HiOutlineUserGroup } from "react-icons/hi2";
 import { SlOptionsVertical } from "react-icons/sl";
 import ProgressBar from "@ramonak/react-progress-bar";
-import { MdOutlineCalendarMonth } from "react-icons/md";
-import { Checkbox, Table } from "flowbite-react";
+import {
+  Checkbox,
+  Label,
+  Table,
+  Avatar,
+  Badge,
+  List,
+  Dropdown,
+} from "flowbite-react";
 import logo from "../assets/image2.jpg";
 import { PiExam } from "react-icons/pi";
 import { ArcElement } from "chart.js/auto";
 import PieChart from "./PieChart";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { FaEdit, FaLongArrowAltRight } from "react-icons/fa";
 
 export default function DashComponent() {
   const [users, setUsers] = useState([]);
@@ -21,6 +30,21 @@ export default function DashComponent() {
   const [totalPosts, setTotalPosts] = useState(0);
   const [lastMonthUsers, setLastMonthUsers] = useState(0);
   const { currentUser } = useSelector((state) => state.user);
+  const teacher =
+    "https://pikwizard.com/pw/small/fe895262fcddf4c758f76566e0f41103.jpg";
+  const staff =
+    "https://www.shutterstock.com/image-photo/business-team-standing-over-dark-260nw-181166018.jpg";
+  const student =
+    "https://img.pikbest.com/ai/illus_our/20230414/593b2c90239e6d9710e4471b4823d69a.jpg!w700wp";
+  const mothevent =
+    "https://floatiekings.com/cdn/shop/articles/creative-school-event-ideas.jpg?v=1703670883&width=2000";
+  const tablebg =
+    "https://law.udmercy.edu/_files/images/students/studentbanner/Student-Directory.jpg";
+  const tableChamp =
+    "https://t4.ftcdn.net/jpg/06/03/94/97/360_F_603949786_1JqD1nWoCDK0Fvo0t2D2dYVMSl0FPiv8.jpg";
+  const libraryImg =
+    "https://png.pngtree.com/thumb_back/fh260/background/20230526/pngtree-an-old-bookcase-in-a-library-image_2642908.jpg";
+  const [interval, setInterval] = useState("Month");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -53,6 +77,7 @@ export default function DashComponent() {
       fetchComments();
       fetchPosts();
     }
+    console.log(currentUser);
   }, [currentUser]);
 
   return (
@@ -87,284 +112,738 @@ export default function DashComponent() {
             className={`flex justify-between items-center gap-6 border border-gray-300 w-64 px-4 py-3 rounded bg-orange-100 h-20`}
           >
             <div className={``}>
-              <h3 className="text-left text-xs text-gray-900">Posts</h3>
+              <h3 className="text-left text-xs text-gray-900">Working Stuff</h3>
               <p className={`text-lg font-semibold text-gray-900`}>
                 {totalPosts}
               </p>
             </div>
             <PiStudentBold size={40} className="text-orange-300" />
           </div>
-          <div className="w-64 bg-sky-200 h-20 rounded ">
-            
-          </div>
+          <div className="w-64 bg-sky-200 h-20 rounded "></div>
         </div>
       </div>
 
-      {/*second section */}
-      <div>
-        <div className="flex gap-4">
-          {/*first left section */}
-          <div className="flex flex-col gap-4">
-            {/*class routine */}
-            <div className="w-fit bg-purple-50 dark:text-black h-fit py-2 rounded">
-              <h3 className="mx-3 font-semibold dark:text-black">Class Routine</h3>
-              <div className="flex gap-3 mx-3 mt-2">
-                <Dropdown
-                  label="select your day"
-                  color="transparent"
-                  size={"xs"}
-                  className=" text-black"
-                >
-                  <Dropdown.Item>Monday</Dropdown.Item>
-                  <Dropdown.Item>Tuesday</Dropdown.Item>
-                  <Dropdown.Item>Wensday</Dropdown.Item>
-                  <Dropdown.Item>Thursday</Dropdown.Item>
-                  <Dropdown.Item>Friday</Dropdown.Item>
-                </Dropdown>
-                <Dropdown
-                  label="select your Grade"
-                  color="transparent"
-                  size={"xs"}
-                  className="p-0"
-                >
-                  <Dropdown.Item>Grade 8</Dropdown.Item>
-                  <Dropdown.Item>Grade 9</Dropdown.Item>
-                  <Dropdown.Item>Grade 10</Dropdown.Item>
-                  <Dropdown.Item>Grade 11</Dropdown.Item>
-                  <Dropdown.Item>Grade 12</Dropdown.Item>
-                </Dropdown>
-                <Dropdown
-                  label="section"
-                  size={"xs"}
-                  color="transparent"
-                  className="p-0"
-                >
-                  <Dropdown.Item>A</Dropdown.Item>
-                  <Dropdown.Item>B</Dropdown.Item>
-                  <Dropdown.Item>C</Dropdown.Item>
-                  <Dropdown.Item>D</Dropdown.Item>
-                  <Dropdown.Item>E</Dropdown.Item>
-                </Dropdown>
-              </div>
+      {/* second row */}
 
-              {/*time table */}
-              <div className="flex justify-between mx-3 mt-3">
-                <div className="px-2 py-2 bg-white rounded">
-                  <div className="flex justify-between items-center">
-                    <MdOutlineCalendarMonth size={20} />
-                    <SlOptionsVertical size={15} />
-                  </div>
-                  <h3 className="mt-1 text-sm font-semibold mb-1">
-                    October, 2023
-                  </h3>
-                  <ProgressBar
-                    completed={60}
-                    maxCompleted={100}
-                    bgColor="blue"
-                    labelSize="10px"
-                    baseBgColor="lightblue"
-                    height="12px"
-                    width="160px"
-                    borderRadius={"50px"}
-                  />
-                  <p className="text-xs font-normal text-gray-600">
-                    your class Routine is here
+      {currentUser.isAdmin ? (
+        <div className="container flex flex-col gap-4">
+          <div className="Attendent-list flex gap-4">
+            <div
+              className="bg-gray-200 w-48 px-2 rounded bg-cover border hover:shadow-lg hover:shadow-black hover:scale-105 duration-300 ease-in"
+              style={{
+                backgroundImage: `url(${student})`,
+              }}
+            >
+              <h3 className="text-white text-1xl font-semibold text-shadow-lg">
+                Student Attendance
+              </h3>
+              <div className="flex gap-4 items-center mt-2 justify-between font-extralight">
+                <div className="">
+                  <p className="text-xs text-white font-semibold">
+                    Present No.
                   </p>
+                  <h2 className="font-semibold text-sm text-white">4782</h2>
+                  <p className="text-xs text-white font-semibold">Absent No.</p>
+                  <h2 className="font-semibold text-sm text-white">437</h2>
                 </div>
-
-                <div className="px-2 py-2 bg-white rounded">
-                  <div className="flex justify-between items-center">
-                    <MdOutlineCalendarMonth size={20} />
-                    <SlOptionsVertical size={15} />
-                  </div>
-                  <h3 className="mt-1 text-sm font-semibold mb-1">
-                    November, 2023
-                  </h3>
-                  <ProgressBar
-                    completed={90}
-                    maxCompleted={100}
-                    bgColor="blue"
-                    labelSize="10px"
-                    baseBgColor="lightblue"
-                    height="12px"
-                    width="160px"
-                    borderRadius={"50px"}
+                <div className="relative self-center">
+                  <CircularProgressbar
+                    value={(4782 / 5219) * 100}
+                    text={Math.floor((4782 / 5219) * 100) + "%"}
+                    className="text-white"
+                    strokeWidth={10}
+                    styles={{
+                      root: {
+                        width: "60",
+                        height: "60",
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                        color: "white",
+                      },
+                    }}
                   />
-                  <p className="text-xs font-normal text-gray-600">
-                    your class Routine is here
-                  </p>
                 </div>
               </div>
             </div>
-            {/*end of class routine */}
 
-            {/*top students */}
-            <div className="bg-purple-50 max-w-min h-fit py-2 px-1.5 rounded w-fit">
-              <div className="flex justify-between items-center">
-                <h3 className="text-md font-semibold dark:text-black pl-2">Top Students</h3>
-                <SlOptionsVertical
-                  size={15}
-                  className="text-md font-semibold my-2 dark:text-black"
-                />
-              </div>
-              <div className="overflow-x-auto py-0 w-96">
-                <Table className="bg-purple-50">
-                  <Table.Head className="bg-purple-50">
-                    <Table.HeadCell className="bg-purple-50">
-                      Name
-                    </Table.HeadCell>
-                    <Table.HeadCell className="bg-purple-50">
-                      Grade
-                    </Table.HeadCell>
-                    <Table.HeadCell className="bg-purple-50">
-                      Marks
-                    </Table.HeadCell>
-                  </Table.Head>
-                  <Table.Body className="divide-y bg-purple-50 py-0">
-                    <Table.Row className="bg-purple-50 py-0 dark:border-gray-700 dark:bg-gray-800 w-fit">
-                      <Table.Cell className="whitespace-nowrap py-0 font-medium text-gray-900 min-w-min dark:text-white">
-                        Zamani
-                      </Table.Cell>
-                      <Table.Cell className="py-1">12B</Table.Cell>
-                      <Table.Cell className="py-1">100</Table.Cell>
-                    </Table.Row>
-                    <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800">
-                      <Table.Cell className="whitespace-nowrap py-0 font-medium text-gray-900 dark:text-white">
-                        Asanda
-                      </Table.Cell>
-                      <Table.Cell className="py-1">11A</Table.Cell>
-                      <Table.Cell className="py-1">98</Table.Cell>
-                      
-                    </Table.Row>
-                    <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800">
-                      <Table.Cell className="whitespace-nowrap py-1 font-medium text-gray-900 dark:text-white">
-                        Samuel
-                      </Table.Cell>
-                      <Table.Cell className="py-1">10C</Table.Cell>
-                      <Table.Cell className="py-1">99</Table.Cell>
-                    </Table.Row>
-                    <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800">
-                      <Table.Cell className="whitespace-nowrap py-1 font-medium text-gray-900 dark:text-white">
-                        Zanele
-                      </Table.Cell>
-                      <Table.Cell className="py-1">9C</Table.Cell>
-                      <Table.Cell className="py-1">99</Table.Cell>
-                    </Table.Row>
-                    <Table.Row className="bg-purple-50 dark:border-gray-700 dark:bg-gray-800">
-                      <Table.Cell className="whitespace-nowrap py-1 font-medium text-gray-900 dark:text-white">
-                        Nombikayise
-                      </Table.Cell>
-                      <Table.Cell className="py-1">8C</Table.Cell>
-                      <Table.Cell className="py-1">99</Table.Cell>
-                    </Table.Row>
-                  </Table.Body>
-                </Table>
+            {/* teacher attendance */}
+
+            <div
+              className="bg-gray-200 w-48 px-2 rounded bg-cover border hover:shadow-lg hover:shadow-black hover:scale-105 duration-300 ease-in"
+              style={{
+                backgroundImage: `url(${teacher})`,
+              }}
+            >
+              <h3 className="text-white text-1xl font-semibold text-shadow-lg">
+                Teacher Attendance
+              </h3>
+              <div className="flex gap-4 items-center mt-2 justify-between font-extralight">
+                <div className="">
+                  <p className="text-xs text-white font-semibold">
+                    Present No.
+                  </p>
+                  <h2 className="font-semibold text-sm text-white">4782</h2>
+                  <p className="text-xs text-white font-semibold">Absent No.</p>
+                  <h2 className="font-semibold text-sm text-white">437</h2>
+                </div>
+                <div className="relative self-center">
+                  <CircularProgressbar
+                    value={(1234 / 1456) * 100}
+                    text={Math.floor((1234 / 1456) * 100) + "%"}
+                    className="text-white"
+                    strokeWidth={10}
+                    styles={{
+                      root: {
+                        width: "60",
+                        height: "60",
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                        color: "white",
+                      },
+                    }}
+                  />
+                </div>
               </div>
             </div>
-            {/*end of top students */}
-          </div>
-          {/*end of first left section */}
 
-          {/*second middle section */}
-          <div className="flex flex-col gap-4">
-            {/*New Applications */}
-            <div className="bg-purple-50 w-56 rounded">
-              <div className="flex items-center justify-between px-3 pt-1 pb-0">
-                <h3 className="font-semibold dark:text-black">New Application</h3>
-                <SlOptionsVertical
-                  size={15}
-                  className="text-md font-semibold"
-                />
-              </div>
-              <div className="bg-purple-50 w-52 pr-2 overflow-hidden">
-                <Table className="h-0">
-                  <Table.Head className="p-0">
-                    <Table.HeadCell className="bg-purple-50 w-2 pl-2">Date</Table.HeadCell>
-                    <Table.HeadCell className="bg-purple-50 pl-0 ">Name</Table.HeadCell>
-                  </Table.Head>
-                  <Table.Body>
-                    <Table.Row className="h-0 py-0">
-                      <Table.Cell className="bg-purple-50 h-0 py-0 pl-2">11/23</Table.Cell>
-                      <Table.Cell className="bg-purple-50 h-0 py-0 pl-0">Ahmedgfgfhgfh</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell className="bg-purple-50 h-3 py-0 pl-2">11/23</Table.Cell>
-                      <Table.Cell className="bg-purple-50 items-center flex gap-1 py-2 pl-0">Ahmed</Table.Cell>
-                    </Table.Row>
-                    
-                    
-                  </Table.Body>
-                </Table>
+            {/* working stuff attendance */}
+
+            <div
+              className="bg-gray-200 w-48 px-2 rounded bg-cover border hover:shadow-lg hover:shadow-black hover:scale-105 duration-300 ease-in"
+              style={{
+                backgroundImage: `url(${staff})`,
+              }}
+            >
+              <h3 className="text-white text-1xl font-semibold text-shadow-lg">
+                Staff Attendance
+              </h3>
+              <div className="flex gap-4 items-center mt-2 justify-between font-extralight">
+                <div className="">
+                  <p className="text-xs text-white font-semibold">
+                    Present No.
+                  </p>
+                  <h2 className="font-semibold text-sm text-white">472</h2>
+                  <p className="text-xs text-white font-semibold">Absent No.</p>
+                  <h2 className="font-semibold text-sm text-white">47</h2>
+                </div>
+                <div className="relative self-center">
+                  <CircularProgressbar
+                    value={(302 / 519) * 100}
+                    text={Math.floor((302 / 519) * 100) + "%"}
+                    className="text-white"
+                    strokeWidth={10}
+                    styles={{
+                      root: {
+                        width: "60",
+                        height: "60",
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                        color: "white",
+                      },
+                    }}
+                  />
+                </div>
               </div>
             </div>
-            {/*end of New Applications */}
 
-            {/*Exams */}
-            <div className="bg-purple-50 w-56 rounded">
-              <div className="flex items-center justify-between px-3">
-                <h3 className="text-md font-semibold pt-2">Total Exams</h3>
-                <SlOptionsVertical size={15} className="text-md font-semibold my-2"/>
-              </div>
-              <div className="flex justify-between items-center px-4">
-                <p className="font-bold text-3xl pb-2">233</p>
-                <PiExam size={30} className="font-bold pb-2"/>
-              </div>
-              <div className="pb-2">
-                <Table>
-                  <Table.Head>
-                    <Table.HeadCell className="bg-purple-50 w-5 py-0">Passed</Table.HeadCell>
-                    <Table.HeadCell className="bg-purple-50 w-5 py-0">failed</Table.HeadCell>
-                  </Table.Head>
-                  <Table.Body>
-                    <Table.Row>
-                      <Table.Cell className="bg-purple-50 h-3 py-0">200</Table.Cell>
-                      <Table.Cell className="bg-purple-50 h-3 py-0">33</Table.Cell>
-                    </Table.Row>
-                  </Table.Body>
-                </Table>
+            {/* this Month events */}
+            <div
+              className="bg-gray-200 w-48 px-2 rounded bg-cover border hover:shadow-lg hover:shadow-black hover:scale-105 duration-300 ease-in"
+              style={{
+                backgroundImage: `url(${mothevent})`,
+              }}
+            >
+              <h3 className="text-white text-1xl font-semibold text-shadow-lg">
+                This Month Events
+              </h3>
+              <div className="flex gap-4 items-center mt-2 justify-between font-extralight">
+                <div className="">
+                  <p className="text-xs text-white font-semibold">All Events</p>
+                  <h2 className="font-semibold text-sm text-white">40</h2>
+                  <p className="text-xs text-white font-semibold">Completed.</p>
+                  <h2 className="font-semibold text-sm text-white">7</h2>
+                </div>
+                <div className="relative self-center">
+                  <CircularProgressbar
+                    value={(7 / 40) * 100}
+                    text={Math.floor((7 / 40) * 100) + "%"}
+                    className="text-white"
+                    strokeWidth={10}
+                    styles={{
+                      root: {
+                        width: "60",
+                        height: "60",
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                        color: "white",
+                      },
+                    }}
+                  />
+                </div>
               </div>
             </div>
-            {/*end of Exams */}
 
-            {/*starts*/}
-            <div className="w-56 h-36 rounded mt-2 bg-purple-50">
-              <h3 className="text- font-semibold pt-2 px-2">Starts</h3>
-            </div>
-            {/*end of starts */}
-          </div>
-          {/*end of second middle section */}
-
-          {/*right section */}
-          <div className="flex flex-col gap-4">
-            {/*right top section */}
-            <div className="w-min h-fit rounded pb-3 bg-purple-50">
-              <div className="flex justify-between items-center px-4 pt-2">
-                <h3 className="">Course Stats</h3>
-                <SlOptionsVertical/>
+            {/* new applicants */}
+            <div
+              className="bg-gray-200 w-56 px-2 rounded bg-cover border hover:shadow-lg hover:shadow-black hover:scale-105 duration-300 ease-in"
+              style={{
+                backgroundImage: `url(${mothevent})`,
+              }}
+            >
+              <h3 className="text-white text-1xl font-semibold text-shadow-lg">
+                New Applications
+              </h3>
+              <div className="flex gap-4 items-center mt-2 justify-between font-extralight">
+                <div className="">
+                  <p className="text-xs text-white font-semibold">
+                    All Applications
+                  </p>
+                  <h2 className="font-semibold text-sm text-white">40</h2>
+                  <p className="text-xs text-white font-semibold">Completed.</p>
+                  <h2 className="font-semibold text-sm text-white">7</h2>
+                </div>
+                <div className="relative self-center">
+                  <CircularProgressbar
+                    value={(7 / 40) * 100}
+                    text={Math.floor((7 / 40) * 100) + "%"}
+                    className="text-white"
+                    strokeWidth={10}
+                    styles={{
+                      root: {
+                        width: "60",
+                        height: "60",
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                        color: "white",
+                      },
+                    }}
+                  />
+                </div>
               </div>
-              <div className="">
-                <PieChart />
-              </div>
-            </div>
-            <div className="w-64 h-36 mt-3 rounded bg-purple-50">
-              <div className="">
-                <h3 className="px-3 pt-2">Notifications</h3>
-              </div>
-            </div>
-            
-          </div>
-          {/*end of right section */}
-
-          <div className="w-40 bg-purple-50 rounded">
-            <div className="flex pt-2 items-center px-2 justify-between">
-              <h3 className="">lists</h3>
-              <SlOptionsVertical/>
             </div>
           </div>
-          
+
+          {/*Student Directory  */}
+
+          <div className="secContainer flex flex-col gap-4">
+            {/*best performers */}
+            <div className="flex gap-8">
+              <div
+                className="bestPeformers w-max rounded border"
+                style={{
+                  backgroundImage: `url(${tableChamp})`,
+                  width: "730px",
+                }}
+              >
+                <div className="flex justify-between py-2 px-2 text-white">
+                  <h3>Best Performers</h3>
+                  <SlOptionsVertical />
+                </div>
+                <div className="select intevla flex gap-7 pl-7 text-white">
+                  <p
+                    className={` cursor-pointer ${
+                      interval === "Month"
+                        ? "active border-b border-red-700 scale-105 text-red-600 duration-150"
+                        : "border-b border-spacing-0"
+                    }`}
+                    onClick={() => {
+                      setInterval("Month");
+                    }}
+                  >
+                    Month
+                  </p>
+                  <p
+                    className={` cursor-pointer ${
+                      interval === "Year"
+                        ? "active border-b border-red-700 scale-105 text-red-600 duration-150"
+                        : "border-b border-spacing-0"
+                    }`}
+                    onClick={() => {
+                      setInterval("Year");
+                    }}
+                  >
+                    Year
+                  </p>
+                </div>
+                {interval === "Month" ? (
+                  <div className="Table p-2">
+                    <Table className="divide-y">
+                      <Table.Head className=" text-white">
+                        <Table.HeadCell className="py-1 pl-0 pr-0 w-min bg-transparent dark:bg-transparent">
+                          Photo
+                        </Table.HeadCell>
+                        <Table.HeadCell className="py-1 pl-0 left-0 w-32 bg-transparent overflow-hidden truncate dark:bg-transparent">
+                          Student Name
+                        </Table.HeadCell>
+                        <Table.HeadCell className="py-1 pl-2 w-32 bg-transparent dark:bg-transparent">
+                          Email
+                        </Table.HeadCell>
+                        <Table.HeadCell className="py-1 pl-2 w-32 bg-transparent dark:bg-transparent">
+                          Standard
+                        </Table.HeadCell>
+                        <Table.HeadCell className="py-1 pl-2 w-32 bg-transparent dark:bg-transparent">
+                          Rank
+                        </Table.HeadCell>
+                      </Table.Head>
+                      <Table.Body className="text-white">
+                        <Table.Row>
+                          <Table.Cell className="pl-2 py-1">
+                            <Avatar
+                              size="xs"
+                              img={currentUser.profilePicture}
+                              rounded
+                              className=" rounded"
+                            />
+                          </Table.Cell>
+                          <Table.Cell className="pl-0 py-1 w-32 whitespace-nowrap overflow-hidden text-white font-medium">
+                            {currentUser.firstName} {currentUser.lastName}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-200 font-mono">
+                            {currentUser.email}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-50 font-mono">
+                            10th Grade
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1">
+                            <ProgressBar
+                              completed={75}
+                              bgColor="gold"
+                              customLabelStyles={{ color: "black" }}
+                              maxCompleted={100}
+                              customLabel="75%"
+                              height="10px"
+                              width="200px"
+                              labelSize="10px"
+                              barContainerClassName="bg-white rounded w-40 h-fit"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell className="pl-2 py-1">
+                            <Avatar
+                              size="xs"
+                              img={currentUser.profilePicture}
+                              rounded
+                              className=""
+                            />
+                          </Table.Cell>
+                          <Table.Cell className="pl-0 py-1 w-32 whitespace-nowrap overflow-hidden text-white font-medium">
+                            {currentUser.firstName} {currentUser.lastName}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-200 font-mono">
+                            {currentUser.email}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-50 font-mono">
+                            12th Grade
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1">
+                            <ProgressBar
+                              completed={98}
+                              bgColor="gold"
+                              customLabelStyles={{ color: "black" }}
+                              maxCompleted={100}
+                              customLabel="98%"
+                              height="10px"
+                              width="200px"
+                              labelSize="10px"
+                              barContainerClassName="bg-white rounded w-40 h-fit"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell className="pl-2 py-1">
+                            <Avatar size="xs" img={logo} rounded className="" />
+                          </Table.Cell>
+                          <Table.Cell className="pl-0 py-1 w-32 whitespace-nowrap overflow-hidden text-white font-medium">
+                            {currentUser.firstName} {currentUser.lastName}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-200 font-mono">
+                            {currentUser.email}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-50 font-mono">
+                            8th Grade
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1">
+                            <ProgressBar
+                              completed={85}
+                              maxCompleted={100}
+                              bgColor="gold"
+                              customLabelStyles={{ color: "black" }}
+                              customLabel="85%"
+                              height="10px"
+                              width="200px"
+                              labelSize="10px"
+                              barContainerClassName="bg-white rounded w-40 h-fit"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
+                  </div>
+                ) : (
+                  <div className="Table p-2">
+                    <Table className="divide-y">
+                      <Table.Head className=" text-white">
+                        <Table.HeadCell className="py-1 pl-0 pr-0 w-min bg-transparent dark:bg-transparent">
+                          Photo
+                        </Table.HeadCell>
+                        <Table.HeadCell className="py-1 pl-0 left-0 w-32 bg-transparent overflow-hidden truncate dark:bg-transparent">
+                          Student Name
+                        </Table.HeadCell>
+                        <Table.HeadCell className="py-1 pl-2 w-32 bg-transparent dark:bg-transparent">
+                          Email
+                        </Table.HeadCell>
+                        <Table.HeadCell className="py-1 pl-2 w-32 bg-transparent dark:bg-transparent">
+                          Standard
+                        </Table.HeadCell>
+                        <Table.HeadCell className="py-1 pl-2 w-32 bg-transparent dark:bg-transparent">
+                          Rank
+                        </Table.HeadCell>
+                      </Table.Head>
+                      <Table.Body className="text-white">
+                        <Table.Row>
+                          <Table.Cell className="pl-2 py-1">
+                            <Avatar
+                              size="xs"
+                              img={currentUser.profilePicture}
+                              rounded
+                              className=" rounded"
+                            />
+                          </Table.Cell>
+                          <Table.Cell className="pl-0 py-1 w-32 whitespace-nowrap overflow-hidden text-white font-medium">
+                            {currentUser.firstName} {currentUser.lastName}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-200 font-mono">
+                            {currentUser.email}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-50 font-mono">
+                            10th Grade
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1">
+                            <ProgressBar
+                              completed={88}
+                              bgColor="gold"
+                              customLabelStyles={{ color: "black" }}
+                              maxCompleted={100}
+                              customLabel="75%"
+                              height="10px"
+                              width="200px"
+                              labelSize="10px"
+                              barContainerClassName="bg-white rounded w-40 h-fit"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell className="pl-2 py-1">
+                            <Avatar
+                              size="xs"
+                              img={currentUser.profilePicture}
+                              rounded
+                              className=""
+                            />
+                          </Table.Cell>
+                          <Table.Cell className="pl-0 py-1 w-32 whitespace-nowrap overflow-hidden text-white font-medium">
+                            {currentUser.firstName} {currentUser.lastName}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-200 font-mono">
+                            {currentUser.email}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-50 font-mono">
+                            12th Grade
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1">
+                            <ProgressBar
+                              completed={90}
+                              bgColor="gold"
+                              customLabelStyles={{ color: "black" }}
+                              maxCompleted={100}
+                              customLabel="98%"
+                              height="10px"
+                              width="200px"
+                              labelSize="10px"
+                              barContainerClassName="bg-white rounded w-40 h-fit"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell className="pl-2 py-1">
+                            <Avatar size="xs" img={logo} rounded className="" />
+                          </Table.Cell>
+                          <Table.Cell className="pl-0 py-1 w-32 whitespace-nowrap overflow-hidden text-white font-medium">
+                            {currentUser.firstName} {currentUser.lastName}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-200 font-mono">
+                            {currentUser.email}
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1 text-gray-50 font-mono">
+                            8th Grade
+                          </Table.Cell>
+                          <Table.Cell className="pl-2 py-1">
+                            <ProgressBar
+                              completed={92}
+                              maxCompleted={100}
+                              bgColor="gold"
+                              customLabelStyles={{ color: "black" }}
+                              customLabel="85%"
+                              height="10px"
+                              width="200px"
+                              labelSize="10px"
+                              barContainerClassName="bg-white rounded w-40 h-fit"
+                            />
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
+                  </div>
+                )}
+              </div>
+
+              {/* Library */}
+              <div
+                className="w-80 rounded bg-slate-100 object-cover border overflow-y-hidden pb-2 h-52"
+                style={{ backgroundImage: `url(${libraryImg})` }}
+              >
+                <div className="flex justify-between py-2 px-2 items-center">
+                  <h3 className="font-semibold text-white">Library</h3>
+                  <p className="View All text-white text-sm">View All</p>
+                </div>
+                <div className="px-2">
+                  <List unstyled>
+                    <List.Item className="w-full h-fit border rounded hover:scale-100 duration-300 ease-in-out scale-95">
+                      <div className="flex justify-between items-center px-1 py-1">
+                        <div className="for-Avatar-header flex">
+                          <Avatar img={logo} size={"sm"} />
+                          <div className="for-Header flex flex-col pl-1 text-sm">
+                            <h3 className="font-semibold text-white">
+                              Literature
+                            </h3>
+                            <p className="text-xs">10th Grade</p>
+                          </div>
+                        </div>
+                        <p className="text-sm flex gap-1 items-center pr-2 hover:text-white cursor-pointer duration-300 ease-in">
+                          <HiBookOpen />
+                          read
+                        </p>
+                      </div>
+                    </List.Item>
+
+                    <List.Item className="w-full h-fit border rounded hover:scale-100 duration-300 ease-in-out scale-95">
+                      <div className="flex justify-between items-center px-1 py-1">
+                        <div className="for-Avatar-header flex">
+                          <Avatar img={logo} size={"sm"} />
+                          <div className="for-Header flex flex-col pl-1 text-sm">
+                            <h3 className="font-semibold text-white">
+                              IsiZulu
+                            </h3>
+                            <p className="text-xs">10th Grade</p>
+                          </div>
+                        </div>
+                        <p className="text-sm flex gap-1 items-center pr-2 hover:text-white cursor-pointer duration-300 ease-in">
+                          <HiBookOpen />
+                          read
+                        </p>
+                      </div>
+                    </List.Item>
+
+                    <List.Item className="w-full h-fit border rounded hover:scale-100 duration-300 ease-in-out scale-95">
+                      <div className="flex justify-between items-center px-1 py-1">
+                        <div className="for-Avatar-header flex">
+                          <Avatar img={logo} size={"sm"} />
+                          <div className="for-Header flex flex-col pl-1 text-sm">
+                            <h3 className="font-semibold text-white">
+                              Mathematics
+                            </h3>
+                            <p className="text-xs">10th Grade</p>
+                          </div>
+                        </div>
+                        <p className="text-sm flex gap-1 items-center pr-2 hover:text-white cursor-pointer duration-300 ease-in">
+                          <HiBookOpen />
+                          read
+                        </p>
+                      </div>
+                    </List.Item>
+
+                    <List.Item className="w-full h-fit border rounded hover:scale-100 duration-300 ease-in-out scale-95">
+                      <div className="flex justify-between items-center px-1 py-1">
+                        <div className="for-Avatar-header flex">
+                          <Avatar img={logo} size={"sm"} />
+                          <div className="for-Header flex flex-col pl-1 text-sm">
+                            <h3 className="font-semibold text-white">
+                              English
+                            </h3>
+                            <p className="text-xs">10th Grade</p>
+                          </div>
+                        </div>
+                        <p className="text-sm flex gap-1 items-center pr-2 hover:text-white cursor-pointer duration-300 ease-in">
+                          <HiBookOpen />
+                          read
+                        </p>
+                      </div>
+                    </List.Item>
+                  </List>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-4 px-10">
+            <div
+              className="w-80 rounded bg-slate-100 object-cover border overflow-y-hidden pb-2 h-52"
+              style={{ backgroundImage: `url(${libraryImg})` }}
+            >
+              <div className="px-2 py-1">
+                <h3 className="text-white">Recent Applications</h3>
+              </div>
+              <div className="px-2 pt-1">
+                <List unstyled>
+                  <List.Item className="w-full h-fit border rounded hover:scale-100 duration-300 ease-in-out scale-95">
+                    <div className="flex justify-between items-center px-1 py-1">
+                      <div className="for-Avatar-header flex">
+                        <Avatar img={logo} size={"sm"} />
+                        <div className="for-Header flex flex-col pl-1 text-sm">
+                          <h3 className="font-semibold text-white">
+                            {currentUser.firstName}
+                          </h3>
+                          <p className="text-xs">
+                            {new Date(
+                              currentUser.createdAt
+                            ).toLocaleDateString()}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-sm flex gap-1 items-center pr-2 hover:text-white cursor-pointer duration-300 ease-in">
+                        <FaLongArrowAltRight className="text-lg" />
+                      </p>
+                    </div>
+                  </List.Item>
+
+                  <List.Item className="w-full h-fit border rounded hover:scale-100 duration-300 ease-in-out scale-95">
+                    <div className="flex justify-between items-center px-1 py-1">
+                      <div className="for-Avatar-header flex">
+                        <Avatar img={logo} size={"sm"} />
+                        <div className="for-Header flex flex-col pl-1 text-sm">
+                          <h3 className="font-semibold text-white">
+                            Simphiwe
+                          </h3>
+                          <p className="text-xs">10th Grade</p>
+                        </div>
+                      </div>
+                      <p className="text-sm flex gap-1 items-center pr-2 hover:text-white cursor-pointer duration-300 ease-in">
+                        <FaLongArrowAltRight className="text-lg" />
+                      </p>
+                    </div>
+                  </List.Item>
+
+                  <List.Item className="w-full h-fit border rounded hover:scale-100 duration-300 ease-in-out scale-95">
+                    <div className="flex justify-between items-center px-1 py-1">
+                      <div className="for-Avatar-header flex">
+                        <Avatar img={logo} size={"sm"} />
+                        <div className="for-Header flex flex-col pl-1 text-sm">
+                          <h3 className="font-semibold text-white">
+                            Siphosenkosi
+                          </h3>
+                          <p className="text-xs">10th Grade</p>
+                        </div>
+                      </div>
+                      <p className="text-sm flex gap-1 items-center pr-2 hover:text-white cursor-pointer duration-300 ease-in">
+                        <FaLongArrowAltRight className="text-lg" />
+                      </p>
+                    </div>
+                  </List.Item>
+
+                  <List.Item className="w-full h-fit border rounded hover:scale-100 duration-300 ease-in-out scale-95">
+                    <div className="flex justify-between items-center px-1 py-1">
+                      <div className="for-Avatar-header flex">
+                        <Avatar img={logo} size={"sm"} />
+                        <div className="for-Header flex flex-col pl-1 text-sm">
+                          <h3 className="font-semibold text-white">
+                            Amahle
+                          </h3>
+                          <p className="text-xs">10th Grade</p>
+                        </div>
+                      </div>
+                      <p className="text-sm flex gap-1 items-center pr-2 hover:text-white cursor-pointer duration-300 ease-in">
+                        <FaLongArrowAltRight className="text-lg" />
+                      </p>
+                    </div>
+                  </List.Item>
+                </List>
+              </div>
+            </div>
+            <div className="w-80 h-52 bg-black rounded border ">
+              <div className="h3Element px-2 py-1 flex justify-between items-center font-semibold">
+                <h3 className="text-white">class Performance</h3>
+                <Dropdown label="select Grade" inline>
+                  <Dropdown.Item>grade 8</Dropdown.Item>
+                  <Dropdown.Item>grade 9</Dropdown.Item>
+                  <Dropdown.Item>grade 10</Dropdown.Item>
+                  <Dropdown.Item>grade 11</Dropdown.Item>
+                  <Dropdown.Item>grade 12</Dropdown.Item>
+                </Dropdown>
+              </div>
+              <div className="containsbarSide flex justify-between px-5 pt-5 items-center">
+                <div className="Bar">
+                  <CircularProgressbar
+                    value={40}
+                    text="40%"
+                    strokeWidth={6}
+                    className="w-28 pl-3"
+                  />
+                </div>
+                <div className="att flex flex-col gap-2">
+                  <div className="py-1 px-1 w-20 text-sm text-white bg-sky-200 rounded items-center flex flex-col justify-center">
+                    <p className="text-xs py-0 ">Attendance</p>
+                    <p className="text-xs pt-0">Avarage</p>
+                    <p className="text-lg font-semibold">95%</p>
+                  </div>
+                  <div className="py-1 px-1 w-20 text-sm text-white bg-sky-200 rounded flex flex-col justify-center items-center">
+                    <p className="text-xs pt-0">Edu. Grade</p>
+                    <p className="text-xs pt-0">Avarage</p>
+                    <p className="text-lg font-semibold">B+</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-80 h-52 bg-black rounded border"></div>
+          </div>
         </div>
-        {/*third section */}
-      </div>
+      ) : (
+        "not admin"
+      )}
     </div>
   );
 }
+/**
+  <div className="">
+        <div className="bg-gray-200 w-48 px-2 rounded bg-cover" style={{
+          backgroundImage: `url(${logo})`
+        }}>
+          <h3 className="text-white text-1xl font-semibold">Student Attendance</h3>
+          <div className="flex gap-4 items-center mt-2 justify-between">
+            <div className="">
+              <p className="text-xs text-white">Present No.</p>
+              <h2 className="font-semibold text-sm text-white">4782</h2>
+              <p className="text-xs text-white">Absent No.</p>
+              <h2 className="font-semibold text-sm text-white">437</h2>
+            </div>
+            <div className="relative self-center">
+              <CircularProgressbar value={75} text={"75%"} className="text-white" strokeWidth={10} styles={{
+                root:{
+                  width: '60',
+                  height: '60',
+                  position: 'relative',
+                  top: 0,
+                  left: 0,
+                  color: 'white',
+                }
+              }}/>
+            </div>
+          </div>
+        </div>
+      </div>
+ */

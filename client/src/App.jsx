@@ -15,6 +15,8 @@ import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import UpdatePost from "./pages/UpdatePost";
 import PostPage from "./pages/PostPage";
 import TopPage from "./components/TopPage";
+import Search from "./pages/search";
+import FormalForm from "./pages/FormalForm";
 
 export default function App() {
   return (
@@ -35,6 +37,8 @@ export default function App() {
         <Route path="/department" element={<Department />} />
         //stuff route
         <Route path="/Stuff" element={<Stuff />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/register" element={<FormalForm />} />
         // contact route
         <Route path="/Contact" element={<Contact />} />
         // private profile route

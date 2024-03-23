@@ -114,6 +114,7 @@ export default function DashPost() {
       console.log(error);
     }
   };
+  console.log(userPost.map((post) => post._id));
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-500 dark:scrollbar-track-slate-700 ">
       {currentUser.isAdmin && userPost.length > 0 ? (

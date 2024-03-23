@@ -29,11 +29,13 @@ export default function Home() {
           cater for the the interests of all the individual needs in our school
           as a way of gaining that competitive and winning urge. <br />
           <br />{" "}
-          <span className="text-red-300">
+          <motion.span className="text-red-300" 
+          initial={{opacity: 0}} animate={{opacity: 1, scale: [1, 1.5, 1, 1.5]}} transition={{duration: 1.5, delay: 5}}
+          whileHover={{scale: 1.6, yoyo: Infinity}}>
             Please take sometime and browse at what activities our institution
             is involved in, and what it offers to current and prospective
             students.
-          </span>
+          </motion.span>
         </motion.p>
       </div>
     </div>

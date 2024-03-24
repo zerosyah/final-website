@@ -15,7 +15,7 @@ import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import UpdatePost from "./pages/UpdatePost";
 import PostPage from "./pages/PostPage";
 import TopPage from "./components/TopPage";
-import Search from "./pages/search";
+import Search from "./pages/Search";
 import FormalForm from "./pages/FormalForm";
 
 export default function App() {

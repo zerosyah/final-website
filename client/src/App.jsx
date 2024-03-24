@@ -37,7 +37,9 @@ export default function App() {
         <Route path="/department" element={<Department />} />
         //stuff route
         <Route path="/Stuff" element={<Stuff />} />
+        //search route
         <Route path="/search" element={<Search />} />
+        // register route
         <Route path="/register" element={<FormalForm />} />
         // contact route
         <Route path="/Contact" element={<Contact />} />

@@ -18,7 +18,7 @@ import { toggleTheme } from "../redux/theme/themeSlice";
 export default function Header() {
   // useLocation function to get path
   const path = useLocation();
-  const location = useLocation()
+  const location = useLocation();
 
   // get current user
   const { currentUser } = useSelector((state) => state.user);
@@ -47,21 +47,20 @@ export default function Header() {
     }
   };
 
-  useEffect(()=>{
-    const urlParms = new URLSearchParams(location.search)
-    const searchTermFromUrl = urlParms.get("searchTerm")
-    if(searchTermFromUrl){
-      setSearchTerm(searchTermFromUrl)
+  useEffect(() => {
+    const urlParms = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParms.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
     }
-
-  }, [location.search])
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-    const urlParms = new URLSearchParams(location.search)
-    urlParms.set("searchTerm", searchTerm)
-    const searchQuery = urlParms.toString()
-    navigate(`/search?${searchQuery}`)
-  }
+  }, [location.search]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParms = new URLSearchParams(location.search);
+    urlParms.set("searchTerm", searchTerm);
+    const searchQuery = urlParms.toString();
+    navigate(`/search?${searchQuery}`);
+  };
   return (
     <Navbar className="border-b-2 ">
       {/* Logo */}
@@ -83,7 +82,7 @@ export default function Header() {
           rightIcon={AiOutlineSearch}
           className="hidden lg:inline"
           value={searchTerm}
-          onChange={(e)=> setSearchTerm(e.target.value)}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
 

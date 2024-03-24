@@ -32,7 +32,7 @@ export default function Department() {
       subjects[5],
       subjects[6],
       subjects[17],
-      subjects[17],
+      subjects[17]+1,
     ],
     Grade9: [
       subjects[0],
@@ -43,7 +43,7 @@ export default function Department() {
       subjects[5],
       subjects[6],
       subjects[17],
-      subjects[17],
+      subjects[17]+2,
     ],
     grade10_science: [
       subjects[0],

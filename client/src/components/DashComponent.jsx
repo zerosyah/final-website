@@ -77,7 +77,6 @@ export default function DashComponent() {
       fetchComments();
       fetchPosts();
     }
-    console.log(currentUser);
   }, [currentUser]);
 
   return (

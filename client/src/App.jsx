@@ -15,13 +15,13 @@ import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import UpdatePost from "./pages/UpdatePost";
 import PostPage from "./pages/PostPage";
 import TopPage from "./components/TopPage";
-import Search from "./pages/search";
+import Search from "./pages/Search";
 import FormalForm from "./pages/FormalForm";
 
 export default function App() {
   return (
     <BrowserRouter>
-    <TopPage/>
+      <TopPage />
       {/* header component */}
       <Header></Header>
       <Routes>
@@ -37,7 +37,9 @@ export default function App() {
         <Route path="/department" element={<Department />} />
         //stuff route
         <Route path="/Stuff" element={<Stuff />} />
+        // search route
         <Route path="/search" element={<Search />} />
+        // register route
         <Route path="/register" element={<FormalForm />} />
         // contact route
         <Route path="/Contact" element={<Contact />} />
@@ -46,10 +48,10 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         <Route element={<OnlyAdminPrivateRoute />}>
-        <Route path="/create-post" element={<CreatePost />} />
-        <Route path="/update-post/:postId" element={<UpdatePost />} />
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/update-post/:postId" element={<UpdatePost />} />
         </Route>
-        <Route path="/post/:postSlug" element={<PostPage/>}/>
+        <Route path="/post/:postSlug" element={<PostPage />} />
       </Routes>
     </BrowserRouter>
   );

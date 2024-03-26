@@ -8,6 +8,9 @@ router.get("/test", user.test);
 // update api
 router.post("/update/:id", verifyToken, user.updateFunction)
 
+// adding user form details
+router.post("/register/:id", verifyToken, user.formData)
+
 // delete api
 router.delete("/delete/:id", verifyToken, user.deleteFunction)
 

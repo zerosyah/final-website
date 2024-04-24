@@ -13,7 +13,7 @@ const userDetailSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    isRepeatingGrade: {
+    gradeRepeated: {
         type: String,
         required: true,
     },
@@ -41,7 +41,7 @@ const userDetailSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    StudentAddress: {
+    streetAddress: {
         type: String,
         required: true,
     },
@@ -54,7 +54,7 @@ const userDetailSchema = new mongoose.Schema({
         required: true,
     },
     EmergencyNumber: {
-        type: Number,
+        type: String,
         required: true,
     },
     previousSchoolName: {
@@ -79,31 +79,108 @@ const userDetailSchema = new mongoose.Schema({
     },
     medicalAidNumber: {
         type: String,
+        default: "none"
     },
     medicalAidName: {
         type: String,
+        default: "none"
     },
-    medicalAidMainMemberNames: {
+    medicalAidMainMember: {
         type: String,
+        default: "none",
     },
-    studentDoctorName: {
+    medicalAidDoctorAddress: {
         type: String,
+        default: "none"
     },
-    studentDoctorAddress: {
+    medicalAidDoctorName: {
         type: String,
+        default: "none"
     },
-    studentDoctorNumber: {
+    medicalAidDoctorNumber: {
         type: String,
+        default: "none"
     },
-    studentRequireCounseling: {
+    studentRequiringCounseling: {
         type: String,
+        default: "none",
     },
     studentMedicalCondition: {
         type: String,
-        required: true,
         default: "none",
     },
+    disability:{
+        type: String,
+        default: "none"
+    },
+    studentRelion: {
+        type: String,
+        default: "none"
+    },
+    numberOfSiblingsInSchool: {
+        type: Number,
+        default: 0
+    },
+    positionInTheFamily: {
+        type: String,
+        default: "first"
+    },
+    firstSiblingName: {
+        type: String,
+        default: "none"
+    },
+    secondSiblingName: {
+        type: String,
+        default: "none"
+    },
+    thirdSiblingName:{
+        type: String,
+        default: "none"
+    },
+    parentTitle: {
+        type: String,
+        required: true,
+    },
+    parentInitials: {
+        type: String,
+        required: true,
+    },
+    parentFirstName:{
+        type: String,
+        required: true,
+    },
+    parentHomeLanguage: {
+        type: String,
+        required: true,
+    },
+    parentId:{
+        type: String,
+        required: true,
+    },
+    parentSurname:{
+        type: String,
+        required: true,
+    },
+    parentHomeLanguage:{
+        type: String,
+        required: true,
+    },
+    parentSecondName: {
+        type: String,
+        default: "none"
+    },
+    parentEmail: {
+        type: String,
+        default: "none"
+    },
+    parentPhone: {
+        type: String,
+        required: true,
+    },
+    parentAlterNumber: {
+        type: String,
+        required: true,
+    }
 }, {timestamps: true});
-
 const userDetailModel = mongoose.model("forms", userDetailSchema);
 module.exports = userDetailModel;

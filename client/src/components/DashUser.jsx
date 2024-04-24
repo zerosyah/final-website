@@ -8,7 +8,7 @@ import DashUserDetails from './DashUserDetails';
 export default function DashUser() {
 
     const [users, setUsers] = useState([])
-    const { currentUser } = useSelector((state: any) => state.user)
+    const { currentUser } = useSelector((state) => state.user)
     useEffect(() => {
         const fetchUsers = async () =>{
             const res = await fetch("/api/user/getUsers")

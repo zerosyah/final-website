@@ -114,7 +114,7 @@ const google = async (req, res, next) => {
       const { password: pass, ...rest } = user._doc;
 
       //set cookie
-      const expiryDate = new Date(Date.now() + 3600000);
+      const expiryDate = new Date(Date.now() + 3000000);
 
       //send token
       res
@@ -155,7 +155,7 @@ const google = async (req, res, next) => {
       const { password: pass, ...rest } = user._doc;
 
       //set cookie
-      const expiryDate = new Date(Date.now() + 3600000);
+      const expiryDate = new Date(Date.now() + 3000000);
 
       //send token
       res

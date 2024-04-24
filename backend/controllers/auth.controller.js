@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken");
  * @param {*} res send data to frontend
  * @param {*} next error
  */
-const Signup = async (req, res, next) => {
+const signup = async (req, res, next) => {
     // destructure request body
     const { firstName, lastName, email, password } = req.body;
 

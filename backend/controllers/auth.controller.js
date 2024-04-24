@@ -73,7 +73,7 @@ const signin = async (req, res, next) => {
       return next(handleError(401, "invalid credentials"));
 
       // if password match generate token
-    const token = jwt.sign({ id: validEmail._id, isAdmin: validEmail.isAdmin }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validEmail._id, isAdmin: validEmail.isAdmin, isComplete: validEmail.isComplete }, process.env.JWT_SECRET);
 
     // remove password from the database data return to the frontend
     const { password: pass, ...rest } = validEmail._doc;

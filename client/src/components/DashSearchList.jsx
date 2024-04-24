@@ -8,7 +8,7 @@ import DashUserDetails from "./DashUserDetails";
 function DashSearchList() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState('');
-  const { currentUser } = useSelector((state: any) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   
   useEffect(() => {
     const fetchUsers = async () => {

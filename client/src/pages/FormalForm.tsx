@@ -54,7 +54,7 @@ export default function FormalForm() {
         setError(true)
         return;
       }else{
-        navigate("/dashboard?tab=dash")
+        navigate("/dashboard?tab=profile")
       }
 
     }catch(error){

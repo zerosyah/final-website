@@ -64,7 +64,14 @@ export default function signin() {
       // if not error then dispatch signInSuccess and redirect
       else {
         dispatch(signInSuccess(data));
-        navigate("/dashboard?tab=dash");
+
+        // if user is new and not admin
+                if(!data.isComplete && !data.isAdmin){
+                  // navigate to user info form
+                  navigate("/register")
+                }else{
+                    navigate("/dashboard?tab=dash");
+                }
       }
     } catch (error) {
       // catch error then dispatch signInFailure

@@ -3,7 +3,7 @@ import { Avatar, Button, Modal, Select } from 'flowbite-react';
 import LineChart from "./PieChart"
 import { Model } from 'mongoose';
 
-function DashUserDetails({selectedUser}: any) {
+function DashUserDetails({selectedUser}) {
     const [user, setUser] = useState({});
     const [details, setDetails] = useState({});
     const [parent, setParent] = useState(false);

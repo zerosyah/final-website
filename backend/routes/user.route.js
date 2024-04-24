@@ -17,6 +17,12 @@ router.delete("/delete/:id", verifyToken, user.deleteFunction)
 // get all users
 router.get("/getUsers", verifyToken, user.getUsers)
 
+// get user by id
+router.get("/get/:id", verifyToken, user.get)
+
+// get user by id
+router.get("/getUsersById/:id", verifyToken, user.getById)
+
 // get users that have commented
 router.get("/:userId", user.userComments)
 

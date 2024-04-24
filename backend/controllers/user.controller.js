@@ -202,23 +202,47 @@ const userComments = async (req, res, next) => {
 const formData = async (req, res, next) => {
   //check if user is an admin or have an account
   const validId = await userModel.findById(req.params.id);
+
+  // check if user is an admin or have an account
+  //if (!validId || !req.user.isAdmin)
+   // return next(handleError(404, "user not found, create an account first"));
+
+  // check if user is an admin or have an account
   if (!validId) {
+    // send error to the frontend
     return next(handleError(404, "user not found, create an account first"));
   }
-  if (req.user.id !== req.params.id){
-    return next(handleError(404, "create an account first"));
-  }
+
+  // check if user is an admin or have an account
+  
+  
 
   // requisting data of the client
   const clientData = req.body;
 
   // create a new user Data using data from frontEnd
-  const newClientData = new userDetailModel(clientData);
+  const newClientData = new userDetailModel({
+    ...clientData,
+    userId: req.user.id,
+  });
 
   // try to get user data from the frontend
   try {
     // save user data to the database
-    await newClientData.save();
+    const saved = await newClientData.save();
+
+    // save user data to the database
+    if (saved) {
+      
+      // find user by id from the database and set isComplete to true
+      const change = await userModel.findByIdAndUpdate(
+        req.user.id,
+        {
+          $set: { isComplete: true },
+        },
+        { new: true }
+      );
+    }
 
     // send data to the frontend
     res.status(201).json({ message: "data saved to the database" });

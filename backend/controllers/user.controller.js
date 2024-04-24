@@ -235,4 +235,6 @@ module.exports = {
   getUsers,
   userComments,
   formData,
+  get,
+  getById
 };

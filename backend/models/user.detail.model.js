@@ -117,6 +117,10 @@ const userDetailSchema = new mongoose.Schema({
         type: String,
         default: "none"
     },
+    dob: {
+        type: String,
+        default: "none"
+    },
     numberOfSiblingsInSchool: {
         type: Number,
         default: 0

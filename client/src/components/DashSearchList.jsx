@@ -32,7 +32,7 @@ function DashSearchList() {
 
         <div className="List">
           {currentUser.isAdmin &&
-            users.map((user: any) => (
+            users.map((user) => (
               <ul className="flex flex-col gap-10 mt-1">
                 <li className="flex border-b flex-col gap-4" onClick={() => setSelectedUser(user._id)}>
                   <div className="flex justify-between w-full items-center">

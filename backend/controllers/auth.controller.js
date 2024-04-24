@@ -10,29 +10,41 @@ const jwt = require("jsonwebtoken");
  * @param {*} res send data to frontend
  * @param {*} next error
  */
-const signup = async (req, res, next) => {
+const SignUp = async (req, res, next) => {
+    // destructure request body
+    const { firstName, lastName, email, password } = req.body;
 
-  // req uswr data from the frontend
-  const user = req.body;
+    // check if all fields are filled
+    if(!firstName || !lastName || !email || !password){
+        return next(errorHandler(400, "All fields are required"))
+    }
 
-  // create new user using data from the frontend
-  const newUser = new userModel(user);
+    // generate salt
+    // const salt  = await bcrypt.genSalt(10)
 
-  // try save user
-  try {
-    // saving user to the database
-    await newUser.save();
+    // generate hashed password
+    // const hashedPassword = await bcrypt.hash(password, salt)
 
-    // send response to the frontend
-    res.status(201).json({ message: "user created" });
-  } catch (error) {
-    // send error to the frontend if failed to create user
-    next(error);
+    // create new user
+    const newUser = new userModel({
+        firstName,
+        lastName,
+        email,
+        password
+    })
 
-    // send error to the frontend if failed to create user
-    res.status(404).json({ message: "error occared saving user!" });
-  }
-};
+    try{
+        // save user to the database
+        await newUser.save();
+
+        // send response
+        res.status(201).json({ message: "user created"});
+    }catch(error){
+        next(error)
+
+        res.status(404).json({ message: "user not created"})
+    }
+}
 
 //login api requirest
 /**

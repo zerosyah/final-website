@@ -145,6 +145,39 @@ const getUsers = async (req, res, next) => {
   }
 };
 
+// get user by id
+const getById = async (req, res, next) => {
+  try {
+    // find user by id from the database
+    const user = await userDetailModel.findOne({ userId: req.params.id });
+
+    // if user not found send error to the frontend
+    if (!user) return next(handleError(404, "user not found"));
+
+    // send data to the frontend
+    res.status(200).json({ users: user });
+  } catch (error) {
+    // send error to the frontend
+    next(error);
+  }
+};
+
+// get user by id without password
+const get = async (req, res, next) => {
+  try {
+    // find user by id from the database
+    const user = await userModel.findById(req.params.id);
+
+    if (!user) return next(handleError(404, "user not found"));
+
+    // send data to the frontend
+    res.status(200).json({ users: user });
+  } catch (error) {
+    // send error to the frontend
+    next(error);
+  }
+};
+
 // get users that have commented
 const userComments = async (req, res, next) => {
   // try find user from the database

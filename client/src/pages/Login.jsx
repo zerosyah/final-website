@@ -70,7 +70,7 @@ export default function signin() {
                   // navigate to user info form
                   navigate("/register")
                 }else{
-                    navigate("/dashboard?tab=dash");
+                    navigate("/dashboard?tab=profile");
                 }
       }
     } catch (error) {

@@ -1,6 +1,6 @@
 const accountingModel = require("../models/accounting.model");
 const bussinessstudiesModel = require("../models/businessstudies.model");
-const creativeartModel = require("../models/creativeart.model");
+const creativeartModel = require("../models/creativeArt.model");
 const dramaModel = require("../models/drama.model");
 const englishModel = require("../models/english.model");
 const geaographyModel = require("../models/geography.model");

@@ -5,11 +5,11 @@ export default function Result() {
   const [formData, setFormData] = useState({});
   const [test, setTest] = useState(false);
   const [student, setStudent] = useState([]);
-  const handleChange = (e: any) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // @ts-ignore

@@ -17,6 +17,7 @@ import PostPage from "./pages/PostPage";
 import TopPage from "./components/TopPage";
 import Search from "./pages/Search";
 import FormalForm from "./pages/FormalForm";
+import Result from "./pages/Result";
 
 export default function App() {
   return (
@@ -43,6 +44,8 @@ export default function App() {
         <Route path="/register" element={<FormalForm />} />
         // contact route
         <Route path="/Contact" element={<Contact />} />
+        // marks route
+        <Route path="/result" element={<Result />} />
         // private profile route
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />

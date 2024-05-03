@@ -1,15 +1,19 @@
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
+import { studentSearchStart, studentSearchSuccess, studentSearchFailure } from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Result() {
   const [formData, setFormData] = useState({});
-  const [test, setTest] = useState(false);
-  const [student, setStudent] = useState([]);
+  const [display, setDisplay] = useState(false);
+  const [studens, setStudent] = useState([]);
+  const dispatch = useDispatch();
+  const { loading, error, searching, student } = useSelector((state)=>state.user)
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       // @ts-ignore
@@ -35,6 +39,7 @@ export default function Result() {
       console.log(error);
     }
   };
+  
 
   // useEffect to check if student participate on the subject.
   useEffect(()=>{
@@ -42,16 +47,28 @@ export default function Result() {
     const searchStudent = async () => {
       // use try method
       try{
+        dispatch(studentSearchStart());
         // @ts-ignore
         const res = await fetch(`/api/mark/get/${formData.studentSubject}/${formData.studentId}`);
+
+        // get data from database and change to json
+        const data = await res.json();
+
+        if(data.success === false) {
+          dispatch(studentSearchFailure(data))
+          setDisplay(false)
+        }else{
+          dispatch(studentSearchSuccess(data))
+          setDisplay(true)
+        }
         
         // if the response from the backend is ok
-        if(res.ok){
+        /*if(res.ok){
           // convert response to json
           const data = await res.json();
           setStudent(data.student);
-          setTest(true);
-        }
+          setDisplay(true);
+        }*/
       }catch(error){
         console.log(error);
       }
@@ -61,7 +78,7 @@ export default function Result() {
     searchStudent()
 
     // @ts-ignore
-  }, [formData.studentSubject])
+  }, [formData.studentSubject, formData.studentId])
   
   return (
     <div className="main m-4">
@@ -86,18 +103,10 @@ export default function Result() {
                   <option value={"Life_Sciences"}>Life Sciences</option>
                 </Select>
           </div>
-          <div className="flex h-9 w-52 items-center justify-center border border-dashed">
-            {test === true ? (
-              <>
-                <p className="flex items-center justify-center text-lime-400">
-                  {student.studentId}
-                </p>
-              </>
-            ) : (
-              <p className=""></p>
-            )}
+          <div className="flex h-fit p-1 w-56 items-center justify-center border border-dashed">
+            {searching ? <p className="text-lime-400">searching...</p> : error ? <p className="text-lime-400">{error.message}</p> : <p className="text-lime-400">{student.student.studentId}</p>}
           </div>
-          {test === true && (
+          {display === true && (
             <div className="flex flex-col gap-3 border border-dotted p-3 md:flex-row md:items-center md:justify-evenly">
               <div className="flex items-center gap-1">
                 <label htmlFor="subject" className="font-mono font-semibold">
@@ -127,6 +136,12 @@ export default function Result() {
                   <option value={"Apr"}>April</option>
                   <option value={"May"}>May</option>
                   <option value={"Jun"}>June</option>
+                  <option value={"Jul"}>July</option>
+                  <option value={"Aug"}>August</option>
+                  <option value={"sep"}>September</option>
+                  <option value={"Oct"}>October</option>
+                  <option value={"Nov"}>November</option>
+                  <option value={"Dec"}>December</option>
                 </Select>
               </div>
               <div className="flex items-center gap-1">
@@ -147,7 +162,7 @@ export default function Result() {
             </div>
           )}
           {
-            test === true && (
+            display === true && (
               <div className="border p-3 flex gap-4 flex-col md:flex-row md:justify-evenly">
                 <div className="flex gap-1 items-center">
                   <Label htmlFor="mark" className="font-semibold whitespace-nowrap font-mono">mark:</Label>
@@ -161,7 +176,7 @@ export default function Result() {
             )
           }
           {
-            test === true && (
+            display === true && (
               <Button className="uppercase" gradientDuoTone={"tealToLime"} type="submit">Add Result</Button>
             )
           }

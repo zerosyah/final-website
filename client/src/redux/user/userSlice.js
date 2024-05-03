@@ -4,6 +4,7 @@ const initialState = {
   currentUser: null,
   loading: false,
   error: false,
+  student: null
 };
 
 const userSlice = createSlice({
@@ -59,6 +60,18 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = false;
     },
+    studentSearchStart: ( state) =>{
+      state.searching = true
+    },
+    studentSearchSuccess: ( state, action) =>{
+      state.searching = false
+      state.error = false
+      state.student = action.payload
+    },
+    studentSearchFailure: ( state, action) =>{
+      state.searching = false
+      state.error = action.payload
+    }
   },
 });
 

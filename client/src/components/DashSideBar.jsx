@@ -7,7 +7,7 @@ import { signOut } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { MdEmojiEvents } from "react-icons/md";
 import { FaClipboardCheck } from "react-icons/fa6";
-import { FaRegCalendarCheck } from "react-icons/fa";
+import { FaRegCalendarCheck, FaCalculator } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
 import { BiMessageSquareDetail } from "react-icons/bi";
 
@@ -69,12 +69,39 @@ export default function DashSideBar() {
               </Sidebar.Item>
             </Link>
           )}
-          <Sidebar.Item active={tab === "/dashboard?tab=exams"} icon={FaClipboardCheck}>
-            Exams
-          </Sidebar.Item>
-          <Sidebar.Item active={tab === "/dashboard?tab=events"} icon={FaRegCalendarCheck}>
-            Events
-          </Sidebar.Item>
+          {currentUser.isAdmin && (
+            <Link to="/dashboard?tab=result">
+              <Sidebar.Item
+                active={tab === "result"}
+                icon={FaClipboardCheck}
+                as="div"
+              >
+                Add Marks
+              </Sidebar.Item>
+            </Link>
+          )}
+          {currentUser.isAdmin && (
+            <Link to="/dashboard?tab=search">
+              <Sidebar.Item
+                active={tab === "search"}
+                icon={FaRegCalendarCheck}
+                as="div"
+              >
+                Student details
+              </Sidebar.Item>
+            </Link>
+          )}
+          {currentUser.isAdmin && (
+            <Link to="/dashboard?tab=calculator">
+              <Sidebar.Item
+                active={tab === "calculator"}
+                icon={FaCalculator} 
+                as="div"
+              >
+                Student Calculator
+              </Sidebar.Item>
+            </Link>
+          )}
           <Sidebar.Item active={tab === "/dashboard?tab=livechat"} icon={TiMessages}>
             Live Chat
           </Sidebar.Item>

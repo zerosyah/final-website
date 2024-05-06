@@ -13,8 +13,6 @@ const naturalscienceModel = require("../models/naturalScience.model");
 const physicalscienceModel = require("../models/physicalscience.model");
 const tourismModel = require("../models/tourism.model");
 const technologyModel = require("../models/technology.model");
-const userModel = require("../models/user.model");
-const userDetailModel = require("../models/user.detail.model");
 const mongoose = require("mongoose");
 const handleError = require("../utils/error");
 

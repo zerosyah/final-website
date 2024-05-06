@@ -44,7 +44,7 @@ export default function Dashboard() {
         {tab === "dash" && <DashComponent/>}
         {/*Original userser */}
         {tab === "search" && <DashUser/>}
-              {/* result */}
+        {/* result */}
         {tab === "result" && <Result/>}
         {/* calculator */}
         {tab === "calculator" && <Calculator/>}

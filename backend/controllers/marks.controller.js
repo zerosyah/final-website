@@ -1,6 +1,6 @@
 const accountingModel = require("../models/accounting.model");
 const bussinessstudiesModel = require("../models/businessstudies.model");
-const creativeartModel = require("../models/creativeArt.model");
+const creativeArtModel = require("../models/creativeart.model");
 const dramaModel = require("../models/drama.model");
 const englishModel = require("../models/english.model");
 const geaographyModel = require("../models/geography.model");
@@ -9,95 +9,94 @@ const isizuluModel = require("../models/isizulu.model");
 const lifescienceModel = require("../models/lifescience.model");
 const lifeorientation = require("../models/lifeorientation.model");
 const mathematicsModal = require("../models/mathematics.model");
-const naturalscienceModel = require("../models/naturalScience.model");
+const naturalscienceModel = require("../models/naturalscience.model");
 const physicalscienceModel = require("../models/physicalscience.model");
 const tourismModel = require("../models/tourism.model");
 const technologyModel = require("../models/technology.model");
-const userModel = require("../models/user");
+const userModel = require("../models/user.model");
 const userDetailModel = require("../models/user.detail.model");
 const mongoose = require("mongoose");
 const handleError = require("../utils/error");
 
-const createAccounting = async (req, res, next) => {};
-
-const createDrama = async (req, res, next) => {};
-
-const createEnglish = async (req, res, next) => {};
-
-const createTourism = async (req, res, next) => {};
-
-const createMethematics = async (req, res, next) => {};
-
-const createPhysicalScience = async (req, res, next) => {
-  console.log(req.params.studentId);
-  const { testMonth, testName, mark} = req.body;
-  const addMarks = await physicalscienceModel.findOneAndUpdate(
-    {studentId: req.params.studentId},
-    {
-      $push: {
-        marks: {
-          testMonth,
-          testName,
-          mark,
-          date: new Date().toLocaleString()
-        }
-      }
-    },
-    { new: true }
-  )
+const models = {
+  Accounting: accountingModel,
+  Bussiness_Studies: bussinessstudiesModel,
+  Creative_Art: creativeArtModel,
+  Drama: dramaModel,
+  English: englishModel,
+  Geaography: geaographyModel,
+  History: historyModel,
+  Isizulu: isizuluModel,
+  Life_Sciences: lifescienceModel,
+  Life_Orientation: lifeorientation,
+  Mathematics: mathematicsModal,
+  Natural_Sciences: naturalscienceModel,
+  Physical_Sciences: physicalscienceModel,
+  Tourism: tourismModel,
+  Technology: technologyModel,
 };
-const getPhysicalScience = async (req, res, next) => {
-  console.log(req.params.studentId);
-  try {
-    const studentValid = await physicalscienceModel.findOne({studentId: req.params.studentId});
 
-    if (!studentValid) {
-      next(
-        handleError(
-          404,
-          `student: ${req.params.studentId} does not partake on this class.`
-        )
-      );
+const dynamicController = async (req, res, next) => {
+  try {
+    // get the model name from the request parameters or body
+    const subject_name = req.params.studentSubject;
+
+    // define a map of model names to thier corresponding models
+    console.log(models[subject_name]);
+
+    // check if the model name exists in the models map
+    if (!models[subject_name]) {
+      console.log(models[subject_name]);
+      next(handleError(404, `subject: ${subject_name} does not exist.`));
     }
-    res.status(200).json({student: studentValid})
+
+    // use the requested model to perform operations
+    const model = models[subject_name];
+    const valid = await model.findOne({ studentId: req.params.studentId });
+
+    // if student does not exist in the database return an error
+    if (!valid) {
+      next(
+        handleError(404, `student: ${req.params.studentId} does not exist.`)
+      );
+    } else {
+      // return the based on the operation
+      res.status(200).json({ message: "student found", student: valid });
+    }
   } catch (error) {
     next(error);
   }
 };
 
-const createLifeScience = async (req, res, next) => {};
+const createDynamicController = async (req, res, next) => {
+  const { testMonth, testName, mark, status } = req.body;
 
-const createNaturaScience = async (req, res, next) => {};
+  const subject_name = req.params.subject;
 
-const createGeography = async (req, res, next) => {};
+  console.log(subject_name, studentId);
 
-const createLifeOrientation = async (req, res, next) => {};
-
-const createHistory = async (req, res, next) => {};
-
-const createIsizulu = async (req, res, next) => {};
-
-const createBussinessStudies = async (req, res, next) => {};
-
-const createCreativeArt = async (req, res, next) => {};
-
-const createTechnology = async (req, res, next) => {};
+  try {
+    const model = models[subject_name];
+    const valid = await model.findOneAndUpdate(
+      { studentId:  req.params.studentId },
+      {
+        $push: {
+          marks: {
+            testMonth,
+            testName,
+            mark,
+            date: new Date().toLocaleString(),
+          },
+        },
+      }
+    );
+    res.status(200).json({ message: "student found", student: valid });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
-  createAccounting,
-  createDrama,
-  createEnglish,
-  createTourism,
-  createMethematics,
-  createPhysicalScience,
-  createLifeScience,
-  createNaturaScience,
-  createGeography,
-  createLifeOrientation,
-  createHistory,
-  createIsizulu,
-  createBussinessStudies,
-  createCreativeArt,
-  createTechnology,
-  getPhysicalScience
+  dynamicController,
+  createDynamicController,
 };

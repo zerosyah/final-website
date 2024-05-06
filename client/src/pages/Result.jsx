@@ -104,7 +104,7 @@ export default function Result() {
                 </Select>
           </div>
           <div className="flex h-fit p-1 w-56 items-center justify-center border border-dashed">
-            {searching ? <p className="text-lime-400">searching...</p> : error ? <p className="text-lime-400">{error.message}</p> : <p className="text-lime-400">{student.student.studentId}</p>}
+            {searching ? <p className="text-lime-400">searching...</p> : error ? <p className="text-lime-400">{error.message}</p> : <p className="text-lime-400">{studens}</p>}
           </div>
           {display === true && (
             <div className="flex flex-col gap-3 border border-dotted p-3 md:flex-row md:items-center md:justify-evenly">

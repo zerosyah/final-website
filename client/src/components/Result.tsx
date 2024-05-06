@@ -8,12 +8,12 @@ export default function Result() {
   const [display, setDisplay] = useState(false);
   const [studens, setStudent] = useState([]);
   const dispatch = useDispatch();
-  const { error, searching } = useSelector((state: any)=>state.mark)
-  const handleChange = (e: any) => {
+  const { error, searching } = useSelector((state)=>state.mark)
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // @ts-ignore

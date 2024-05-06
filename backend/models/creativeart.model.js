@@ -12,14 +12,10 @@ const markSchema = new mongoose.Schema({
     mark: { 
         type: Number,
         required: true
-    },
-    status: {
-        type: String,
-        required: true
     }
 })
 
-const businessStudiesSchema = new mongoose.Schema({
+const creativeArtSchema = new mongoose.Schema({
     studentId: {
         type: String,
         required: true,
@@ -28,5 +24,5 @@ const businessStudiesSchema = new mongoose.Schema({
     marks: [markSchema],
 })
 
-const businessStudies = mongoose.model("businessStudies", businessStudiesSchema);
-module.exports = businessStudies
+const creativeart = mongoose.model("creativearts", creativeArtSchema);
+module.exports = creativeart

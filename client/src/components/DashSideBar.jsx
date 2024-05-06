@@ -69,28 +69,6 @@ export default function DashSideBar() {
               </Sidebar.Item>
             </Link>
           )}
-          {currentUser.isAdmin && (
-            <Link to="/dashboard?tab=result">
-              <Sidebar.Item
-                active={tab === "result"}
-                icon={FaClipboardCheck}
-                as="div"
-              >
-                Add Marks
-              </Sidebar.Item>
-            </Link>
-          )}
-          {currentUser.isAdmin && (
-            <Link to="/dashboard?tab=search">
-              <Sidebar.Item
-                active={tab === "search"}
-                icon={FaRegCalendarCheck}
-                as="div"
-              >
-                Student details
-              </Sidebar.Item>
-            </Link>
-          )}
           <Sidebar.Item active={tab === "/dashboard?tab=livechat"} icon={TiMessages}>
             Live Chat
           </Sidebar.Item>

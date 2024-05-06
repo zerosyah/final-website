@@ -69,6 +69,17 @@ export default function DashSideBar() {
               </Sidebar.Item>
             </Link>
           )}
+          {currentUser.isAdmin && (
+            <Link to="/dashboard?tab=result">
+              <Sidebar.Item
+                active={tab === "result"}
+                icon={HiOutlineUserGroup}
+                as="div"
+              >
+                Add Marks
+              </Sidebar.Item>
+            </Link>
+          )}
           <Sidebar.Item active={tab === "/dashboard?tab=livechat"} icon={TiMessages}>
             Live Chat
           </Sidebar.Item>

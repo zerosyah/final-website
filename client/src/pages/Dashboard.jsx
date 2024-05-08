@@ -6,8 +6,6 @@ import DashPost from '../components/DashPost'
 import DashUsers from '../components/DashUsers'
 import DashComponent from '../components/DashComponent'
 import DashUser from '../components/DashUser'
-import Result from '../components/Result'
-import Calculator from '../components/Calculator'
 
 
 export default function Dashboard() {
@@ -44,10 +42,7 @@ export default function Dashboard() {
         {tab === "dash" && <DashComponent/>}
         {/*Original userser */}
         {tab === "search" && <DashUser/>}
-        {/* result */}
-        {tab === "result" && <Result/>}
-        {/* calculator */}
-        {tab === "calculator" && <Calculator/>}
+
     </div>
   )
 }

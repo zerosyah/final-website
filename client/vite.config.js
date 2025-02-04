@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://auth-service-cexj.onrender.com/",
+        target: "https://auth-service-cexj.onrender.com",
         secure: false,
       },
     },

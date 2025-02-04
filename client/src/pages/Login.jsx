@@ -41,7 +41,7 @@ export default function signin() {
       dispatch(signInStart());
 
       //api requist
-      const res = await fetch("/api/user/auth/login", {
+      const res = await fetch("/api/auth/login", {
         //method
         method: "POST",
 
